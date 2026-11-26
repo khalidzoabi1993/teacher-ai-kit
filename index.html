@@ -98,6 +98,58 @@ ul.ck input{width:20px;height:20px;margin-top:4px;flex:none;accent-color:var(--t
 .bar .in{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px}
 .bar .trk{flex:1;height:10px;border-radius:5px;background:var(--line);overflow:hidden}
 .bar .trk i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gem),var(--tw));transition:width .4s}
+
+.tabs button.hot{border-color:var(--any);color:var(--any)}
+.tabs button.hot.on{background:var(--any);color:#fff;border-color:var(--any)}
+.bld{border:2px solid var(--any)}
+.bh{margin:0 0 4px;font:800 22px/1.3 inherit;font-family:inherit}
+.bp{margin:0 0 6px;color:var(--soft);font-size:15.5px}
+.bq{font-weight:800;margin:16px 0 8px;font-size:17px}
+.opt{font-weight:500;color:var(--muted);font-size:14px}
+.tchips{display:flex;flex-wrap:wrap;gap:8px}
+.tchips button{border:1.5px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 14px;font-weight:700;font-size:15px;color:var(--soft)}
+.tchips button.on{background:var(--any);border-color:var(--any);color:#fff}
+.bw{min-height:120px;border-color:var(--line);font-size:17px}
+.det{margin:10px 0 6px;font-size:15px;color:var(--soft)}.det b{color:var(--any)}
+.bp-out{width:100%;min-height:200px;border:1.5px solid color-mix(in srgb,var(--any) 45%,var(--line));border-radius:12px;padding:14px;font:inherit;font-size:15.5px;line-height:1.7;background:var(--tint);color:var(--ink);resize:vertical;margin-top:6px;white-space:pre-wrap}
+.bo-f{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+.bo-f .hint{font-size:13.5px;color:var(--muted);flex:1}
+.mini{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 12px;font-weight:700;font-size:13.5px;color:var(--soft)}
+
+.tg{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.tg label{display:flex;align-items:center;gap:10px;font-weight:500;margin:0;font-size:15.5px}
+.tg input{width:20px;height:20px;accent-color:var(--any);padding:0;flex:none}
+.bout{border:2px solid var(--any);position:sticky;top:8px}
+.bo-h{display:flex;align-items:center;gap:10px}.bo-h h3{margin:0;flex:1;font:800 20px inherit;font-family:inherit}
+.bo-h .btn{background:var(--any);color:#fff;font-size:16px;padding:10px 24px}
+.meter{display:flex;align-items:center;gap:10px;margin:12px 0 8px;font-weight:700;font-size:15px}
+.mt{flex:1;height:12px;border-radius:6px;background:var(--line);overflow:hidden}
+.mt i{display:block;height:100%;border-radius:6px;transition:width .4s}
+.mt i.g0{background:var(--bad)}.mt i.g1{background:var(--warn)}.mt i.g2{background:var(--gem)}.mt i.g3{background:var(--tw)}
+b.g0{color:var(--bad)}b.g1{color:var(--warn)}b.g2{color:var(--gem)}b.g3{color:var(--tw)}
+.parts{display:flex;flex-wrap:wrap;gap:6px}
+.parts span{font-size:13.5px;font-weight:700;padding:3px 10px;border-radius:999px}
+.parts .y{background:color-mix(in srgb,var(--tw) 14%,transparent);color:var(--tw)}
+.parts .n{background:var(--tint);color:var(--muted)}
+.bout .pr{max-height:none}
+@media(min-width:900px){.bout{position:static}}
+
+.fi{font:inherit;font-weight:700;color:var(--ink);background:var(--card);border:1.5px solid var(--c,var(--any));border-radius:8px;padding:1px 6px;margin:1px 2px;max-width:100%;min-width:4ch;vertical-align:baseline;line-height:1.5}
+select.fi{width:auto;padding:1px 4px}
+.fi.em{background:var(--fld);color:var(--fldink);border-style:dashed;border-color:var(--fldink)}
+.fi.em::placeholder{color:var(--fldink);opacity:.85}
+.fi:focus{outline:2px solid var(--c,var(--any));outline-offset:1px}
+textarea.fi.big{display:block;width:100%;min-height:72px;margin:6px 0 0;font-weight:500;resize:vertical}
+.pr .txt input.fi,.pr .txt select.fi{width:auto;display:inline-block}
+.tiph{font-size:13.5px;color:var(--muted);margin:2px 0 0}
+.sgs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sg{display:inline-flex;align-items:center;border:1.5px solid var(--line);background:var(--card);border-radius:999px;overflow:hidden}
+.sg button{border:0;background:none;padding:5px 11px;font:inherit;font-size:14px;font-weight:600;color:var(--soft);cursor:pointer}
+.sg .dx{padding:5px 9px 5px 4px;color:var(--muted);font-weight:800}
+html[dir=ltr] .sg .dx{padding:5px 4px 5px 9px}
+.sg.on{background:var(--warn);border-color:var(--warn)}.sg.on button{color:#fff}
+button.sg.add{padding:5px 12px;font:inherit;font-size:14px;font-weight:800;color:var(--any);border:1.5px dashed var(--any);background:none;cursor:pointer}
+.sgh{font-size:13.5px;color:var(--muted);align-self:center}
 footer{text-align:center;color:var(--muted);font-weight:700;margin:30px 0 10px}
 </style>
 </head>
@@ -110,15 +162,16 @@ footer{text-align:center;color:var(--muted);font-weight:700;margin:30px 0 10px}
   <section class="card prof">
     <h2 data-t="profH"></h2><p data-t="profP"></p>
     <div class="fg">
-      <div><label for="fS" data-t="fS"></label><input id="fS" autocomplete="off"></div>
+      <div><label for="fS" data-t="fS"></label><input id="fS" list="dlS" autocomplete="off"><div class="sgs" id="sgS"></div></div>
       <div><label for="fG" data-t="fG"></label><select id="fG"></select></div>
       <div><label for="fL" data-t="fL"></label><select id="fL"></select></div>
-      <div><label for="fT" data-t="fT"></label><input id="fT" autocomplete="off"></div>
+      <div><label for="fT" data-t="fT"></label><input id="fT" list="dlT" autocomplete="off"><div class="sgs" id="sgT"></div></div><datalist id="dlS"></datalist><datalist id="dlT"></datalist>
     </div>
     <div class="ready" id="ready"></div>
   </section>
-  <nav class="tabs" id="tabs"><button data-p="s2" class="on" data-t="tab1"></button><button data-p="lib" data-t="tab2"></button><button data-p="how" data-t="tab3"></button></nav>
+  <nav class="tabs" id="tabs"><button data-p="s2" class="on" data-t="tab1"></button><button data-p="build" class="hot">✨</button><button data-p="lib" data-t="tab2"></button><button data-p="how" data-t="tab3"></button></nav>
   <section class="pane on" id="s2"></section>
+  <section class="pane" id="build"></section>
   <section class="pane" id="lib"></section>
   <section class="pane" id="how"></section>
   <footer data-t="foot"></footer>
@@ -285,26 +338,180 @@ const TITLES = {
 const LIB = [['opening','plan','any'],['plan','plan','gemini'],['worksheet','adapt','any'],['simplify','adapt','any'],['explain','adapt','any'],['mcq','assess','any'],['quiz','assess','testwise'],['check','assess','any'],['game','learn','claude'],['tutor','learn','any'],['parents','comm','any'],['feedback','comm','any'],['vocab','lang','any']];
 const TOOLS = {gemini:['Gemini','https://gemini.google.com'],testwise:['TestWiseAI','https://testwiseai.com'],claude:['Claude','https://claude.ai'],chatgpt:['ChatGPT','https://chatgpt.com']};
 
+const BUILD = {
+he: {
+ tab:'✨ בונה הנחיות',
+ h:'כותבים במילים שלכם, ההנחיה נבנית לבד', p:'כתבו בחופשיות מה אתם צריכים, כמו שהייתם מספרים לחבר. ההנחיה המלאה מתעדכנת מתחת תוך כדי כתיבה.',
+ wPh:'למשל: אני רוצה 8 שאלות על מחזור המים לכיתה ז, שיהיה פשוט כי חלק מהתלמידים מתקשים',
+ addH:'רוצים תוצאה עוד יותר טובה? לחצו להוספה:', edit:'✎ אפשר לערוך את ההנחיה ישירות', reset:'↻ חזרה להנחיה האוטומטית', detected:'זיהינו:',
+ adds:{three:'3 רמות קושי',table:'בטבלה',ask:'שישאל אותי קודם',loc:'דוגמאות מחיי התלמידים',chk:'שיבדוק את עצמו',short:'קצר ותמציתי',key:'עם פתרונות'},
+ addTxt:{table:'הצג את התוצאה כטבלה מסודרת.',short:'שמור על תוצאה קצרה ותמציתית.',key:'הוסף בסוף פתרונות מלאים או מפתח תשובות.'},
+
+ q1:'1. מה אתם צריכים?', q2:'2. תארו במילים שלכם', q3:'3. פרטים שמשפרים את התוצאה', opt:'(לא חובה)',
+ lvl:'רמת התלמידים', qty:'כמה? (מספר שאלות, דקות, תרגילים)', qtyPh:'למשל: 8 שאלות', fmt:'צורת התוצאה', must:'חשוב שיהיה בתוצאה', mustPh:'למשל: דוגמאות מחיי הכפר, בלי מילים קשות',
+ tool:'איפה תשתמשו בהנחיה?', ask:'שהכלי ישאל אותי שאלות לפני שהוא מתחיל', chk:'שהכלי יבדוק את עצמו בסוף', loc:'דוגמאות מחיי התלמידים',
+ outH:'ההנחיה המוכנה שלכם', score:'איכות ההנחיה', grades:['חלשה','סבירה','טובה','מצוינת'], miss:'כדי לשפר:',
+ needWords:'כתבו קודם במילים שלכם מה אתם רוצים (שלב 2).',
+ types:{plan:['מערך שיעור','מורה מנוסה ל{S} ומומחה לתכנון שיעורים בחטיבת ביניים','בנה מערך שיעור','table','למשל: שיעור שבו התלמידים מבינים למה המים מתאדים, עם ניסוי קטן בכיתה'],
+  work:['דף עבודה','מורה מנוסה ל{S} שכותב חומרי תרגול לחטיבת ביניים','הכן דף עבודה','numbered','למשל: תרגילים על חיבור שברים, מהקל אל הקשה'],
+  quiz:['שאלות / בוחן','מומחה להערכה ולכתיבת שאלות ב{S}','כתוב שאלות לבוחן','questions','למשל: לבדוק אם הבינו את שלבי מחזור המים'],
+  expl:['הסבר לנושא','מורה ל{S} שיודע להסביר נושאים קשים בפשטות','הסבר את הנושא','text','למשל: התלמידים לא מבינים מה זה שבר עשרוני'],
+  sum:['דף סיכום לתלמיד','מורה ל{S} שכותב סיכומים ברורים לתלמידים','כתוב דף סיכום לתלמיד','text','למשל: סיכום של היחידה לקראת המבחן'],
+  par:['הודעה להורים','מחנך כיתה שכותב להורים בחום ובכבוד','כתוב הודעה להורים','short','למשל: יש מבחן בעוד שבוע ואני רוצה שיעזרו בתרגול'],
+  game:['משחק לימודי','מפתח משחקים לימודיים לתלמידי חטיבת ביניים','בנה משחק אינטראקטיבי','app','למשל: משחק התאמה בין מושג להגדרה'],
+  other:['משהו אחר','עוזר הוראה מנוסה ל{S} בחטיבת ביניים','','text','כתבו כאן כל דבר שאתם צריכים']},
+ levels:{mix:'כיתה מעורבת',low:'רובם מתקשים',high:'רובם מתקדמים',three:'שלוש רמות נפרדות'},
+ formats:{table:'טבלה',numbered:'רשימה ממוספרת',questions:'שאלות עם תשובות',text:'טקסט קצר עם כותרות',short:'הודעה קצרה',app:'משחק / דף אינטראקטיבי'},
+ fmtTxt:{table:'הצג את התוצאה כטבלה. במערך שיעור: שלב | זמן בדקות | מה עושה המורה | מה עושים התלמידים.',numbered:'הצג את התוצאה כרשימה ממוספרת, ובסוף מפתח תשובות.',questions:'לכל שאלה 4 תשובות, רק אחת נכונה, והתשובות השגויות מבוססות על טעויות נפוצות של תלמידים. סמן את התשובה הנכונה והוסף הסבר של משפט אחד.',text:'כתוב טקסט קצר וברור עם כותרות, בלי מילים מסובכות.',short:'כתוב הודעה קצרה, עד 5 שורות, בטון חם ומכבד, בלי שמות תלמידים.',app:'בנה משחק אינטראקטיבי שעובד גם בטלפון: ניקוד, משוב מיידי אחרי כל תשובה, ומסך סיום עם כפתור "שחק שוב".'},
+ lvlTxt:{mix:'בכיתה יש תלמידים ברמות שונות.',low:'רוב התלמידים מתקשים בנושא, אז צריך הסברים פשוטים ורמזים.',high:'רוב התלמידים מתקדמים, אז אפשר לאתגר אותם.',three:'הכן שלוש גרסאות: רמה א\' לתלמידים מתקשים (עם רמז), רמה ב\' רגילה, ורמה ג\' עם אתגר.'},
+ L:{role:'אתה {X}.',ctx:'אני מלמד {S} ב{G}, ושפת ההוראה היא {L}.',task:'המשימה: {V} בנושא: {T}.',mine:'במילים שלי: {W}',qty:'כמות / זמן: {Q}.',req:'דרישות:',age:'- שפה פשוטה שמתאימה לגיל התלמידים.',must:'- {M}',loc:'- שלב דוגמאות מחיי היומיום של התלמידים.',fmt:'צורת התוצאה: {F}',ask:'לפני שאתה מתחיל: אם חסר לך מידע חשוב, שאל אותי עד 3 שאלות קצרות, ורק אחרי שאענה כתוב את התוצאה.',chk:'בסוף, בדוק את עצמך: האם התוכן נכון, האם הרמה מתאימה, והאם עמדת בכל הדרישות. תקן אם צריך.',lang:'כתוב את כל התשובה ב{L}.',tw:'השתמש רק בחומר המצורף.'},
+ parts:{role:'תפקיד לכלי',ctx:'הכיתה והשפה',task:'המשימה במילים שלכם',topic:'הנושא',qty:'כמות או זמן',fmt:'צורת התוצאה',lvl:'רמת התלמידים'},
+ tips:{ctx:'מלאו מקצוע, כיתה ושפה בראש העמוד',task:'כתבו לפחות משפט אחד בשלב 2',topic:'מלאו את הנושא בראש העמוד',qty:'כתבו כמה (שאלות, דקות, תרגילים)',lvl:'בחרו רמת תלמידים'},
+ twNote:'ב-TestWiseAI: מדביקים קודם את חומר הלימוד, ואחריו את ההנחיה הזו.'
+},
+ar: {
+ tab:'✨ منشئ التعليمات',
+ h:'اكتبوا بكلماتكم، والتعليمات تُبنى وحدها', p:'اكتبوا بحرية ما تحتاجونه، كما لو كنتم تخبرون صديقًا. التعليمات الكاملة تتحدّث تحتها أثناء الكتابة.',
+ wPh:'مثلًا: أريد 8 أسئلة عن دورة الماء للصف السابع، بشكل بسيط لأن بعض الطلاب يواجهون صعوبة',
+ addH:'تريدون نتيجة أفضل؟ اضغطوا للإضافة:', edit:'✎ يمكن تعديل التعليمات مباشرة', reset:'↻ العودة للتعليمات التلقائية', detected:'تعرّفنا على:',
+ adds:{three:'3 مستويات صعوبة',table:'في جدول',ask:'أن يسألني أولًا',loc:'أمثلة من حياة الطلاب',chk:'أن يفحص نفسه',short:'قصير ومختصر',key:'مع الحلول'},
+ addTxt:{table:'اعرض النتيجة كجدول مرتّب.',short:'حافظ على نتيجة قصيرة ومختصرة.',key:'أضف في النهاية حلولًا كاملة أو مفتاح إجابات.'},
+
+ q1:'1. ماذا تحتاجون؟', q2:'2. صفوا بكلماتكم', q3:'3. تفاصيل تحسّن النتيجة', opt:'(ليس إلزاميًا)',
+ lvl:'مستوى الطلاب', qty:'كم؟ (عدد الأسئلة، الدقائق، التمارين)', qtyPh:'مثلًا: 8 أسئلة', fmt:'شكل النتيجة', must:'مهم أن يكون في النتيجة', mustPh:'مثلًا: أمثلة من حياة القرية، بدون كلمات صعبة',
+ tool:'أين ستستعملون التعليمات؟', ask:'أن تسألني الأداة أسئلة قبل أن تبدأ', chk:'أن تفحص الأداة نفسها في النهاية', loc:'أمثلة من حياة الطلاب',
+ outH:'التعليمات الجاهزة', score:'جودة التعليمات', grades:['ضعيفة','مقبولة','جيدة','ممتازة'], miss:'للتحسين:',
+ needWords:'اكتبوا أولًا بكلماتكم ماذا تريدون (الخطوة 2).',
+ types:{plan:['خطة درس','معلّم {S} ذو خبرة وخبير في تخطيط الدروس للمرحلة الإعدادية','ابنِ خطة درس','table','مثلًا: درس يفهم فيه الطلاب لماذا يتبخّر الماء، مع تجربة صغيرة في الصف'],
+  work:['ورقة عمل','معلّم {S} ذو خبرة يكتب مواد تدريب للمرحلة الإعدادية','حضّر ورقة عمل','numbered','مثلًا: تمارين على جمع الكسور، من السهل إلى الصعب'],
+  quiz:['أسئلة / اختبار','خبير في التقييم وكتابة الأسئلة في {S}','اكتب أسئلة لاختبار','questions','مثلًا: لفحص فهم مراحل دورة الماء'],
+  expl:['شرح موضوع','معلّم {S} يعرف كيف يشرح المواضيع الصعبة ببساطة','اشرح الموضوع','text','مثلًا: الطلاب لا يفهمون ما هو الكسر العشري'],
+  sum:['ورقة تلخيص للطالب','معلّم {S} يكتب ملخّصات واضحة للطلاب','اكتب ورقة تلخيص للطالب','text','مثلًا: تلخيص الوحدة قبل الامتحان'],
+  par:['رسالة للأهل','مربّي صف يكتب للأهل بدفء واحترام','اكتب رسالة للأهل','short','مثلًا: يوجد امتحان بعد أسبوع وأريد أن يساعدوا في التدريب'],
+  game:['لعبة تعليمية','مطوّر ألعاب تعليمية لطلاب المرحلة الإعدادية','ابنِ لعبة تفاعلية','app','مثلًا: لعبة مطابقة بين المفهوم وتعريفه'],
+  other:['شيء آخر','مساعد تدريس ذو خبرة في {S} للمرحلة الإعدادية','','text','اكتبوا هنا أي شيء تحتاجونه']},
+ levels:{mix:'صف مختلط',low:'معظمهم يواجهون صعوبة',high:'معظمهم متقدمون',three:'ثلاثة مستويات منفصلة'},
+ formats:{table:'جدول',numbered:'قائمة مرقّمة',questions:'أسئلة مع إجابات',text:'نص قصير مع عناوين',short:'رسالة قصيرة',app:'لعبة / صفحة تفاعلية'},
+ fmtTxt:{table:'اعرض النتيجة كجدول. في خطة الدرس: المرحلة | الوقت بالدقائق | ماذا يفعل المعلّم | ماذا يفعل الطلاب.',numbered:'اعرض النتيجة كقائمة مرقّمة، وفي النهاية مفتاح الحلول.',questions:'لكل سؤال 4 إجابات، واحدة فقط صحيحة، والإجابات الخاطئة مبنية على أخطاء شائعة عند الطلاب. أشر إلى الإجابة الصحيحة وأضف شرحًا بجملة واحدة.',text:'اكتب نصًا قصيرًا وواضحًا مع عناوين، بدون كلمات معقّدة.',short:'اكتب رسالة قصيرة، حتى 5 أسطر، بنبرة دافئة ومحترمة، بدون أسماء طلاب.',app:'ابنِ لعبة تفاعلية تعمل على الهاتف أيضًا: نقاط، تغذية راجعة فورية بعد كل إجابة، وشاشة نهاية مع زر "العب مرة أخرى".'},
+ lvlTxt:{mix:'في الصف طلاب بمستويات مختلفة.',low:'معظم الطلاب يواجهون صعوبة في الموضوع، لذلك نحتاج شروحات بسيطة وتلميحات.',high:'معظم الطلاب متقدمون، لذلك يمكن تحدّيهم.',three:'حضّر ثلاث نسخ: المستوى أ للطلاب الذين يواجهون صعوبة (مع تلميح)، المستوى ب عادي، والمستوى ج مع تحدٍّ.'},
+ L:{role:'أنت {X}.',ctx:'أدرّس {S} في {G}، ولغة التدريس هي {L}.',task:'المهمة: {V} في موضوع: {T}.',mine:'بكلماتي: {W}',qty:'الكمية / الوقت: {Q}.',req:'المتطلبات:',age:'- لغة بسيطة تناسب عمر الطلاب.',must:'- {M}',loc:'- استعمل أمثلة من الحياة اليومية للطلاب.',fmt:'شكل النتيجة: {F}',ask:'قبل أن تبدأ: إذا كانت تنقصك معلومات مهمة، اسألني حتى 3 أسئلة قصيرة، وبعد أن أجيب اكتب النتيجة.',chk:'في النهاية، افحص نفسك: هل المضمون صحيح، هل المستوى مناسب، وهل التزمت بكل المتطلبات. صحّح إذا لزم.',lang:'اكتب كل الإجابة باللغة {L}.',tw:'استعمل المادة المرفقة فقط.'},
+ parts:{role:'دور للأداة',ctx:'الصف واللغة',task:'المهمة بكلماتكم',topic:'الموضوع',qty:'الكمية أو الوقت',fmt:'شكل النتيجة',lvl:'مستوى الطلاب'},
+ tips:{ctx:'املأوا المادة والصف واللغة في أعلى الصفحة',task:'اكتبوا جملة واحدة على الأقل في الخطوة 2',topic:'املأوا الموضوع في أعلى الصفحة',qty:'اكتبوا كم (أسئلة، دقائق، تمارين)',lvl:'اختاروا مستوى الطلاب'},
+ twNote:'في TestWiseAI: الصقوا أولًا مادة التعلّم، وبعدها هذه التعليمات.'
+},
+en: {
+ tab:'✨ Prompt builder',
+ h:'Write in your own words, the prompt builds itself', p:'Write freely what you need, as if telling a friend. The full prompt updates below as you type.',
+ wPh:'e.g. I want 8 questions on the water cycle for grade 7, simple because some students struggle',
+ addH:'Want an even better result? Tap to add:', edit:'✎ You can edit the prompt directly', reset:'↻ Back to the automatic prompt', detected:'Detected:',
+ adds:{three:'3 difficulty levels',table:'As a table',ask:'Ask me first',loc:"Examples from students' lives",chk:'Self-check',short:'Short and concise',key:'With answers'},
+ addTxt:{table:'Show the result as a clear table.',short:'Keep the result short and concise.',key:'Add full solutions or an answer key at the end.'},
+
+ q1:'1. What do you need?', q2:'2. Describe it in your own words', q3:'3. Details that improve the result', opt:'(optional)',
+ lvl:'Student level', qty:'How much? (questions, minutes, exercises)', qtyPh:'e.g. 8 questions', fmt:'Format of the result', must:'Must be included', mustPh:'e.g. examples from village life, no hard words',
+ tool:'Where will you use it?', ask:'Have the tool ask me questions before it starts', chk:'Have the tool check itself at the end', loc:"Examples from students' lives",
+ outH:'Your ready prompt', score:'Prompt quality', grades:['Weak','OK','Good','Excellent'], miss:'To improve:',
+ needWords:'First describe in your own words what you want (step 2).',
+ types:{plan:['Lesson plan','an experienced {S} teacher and an expert in middle-school lesson planning','Build a lesson plan','table','e.g. a lesson where students understand why water evaporates, with a small class experiment'],
+  work:['Worksheet','an experienced {S} teacher who writes middle-school practice materials','Prepare a worksheet','numbered','e.g. exercises on adding fractions, from easy to hard'],
+  quiz:['Questions / quiz','an expert in assessment and writing {S} questions','Write quiz questions','questions','e.g. to check whether they understood the stages of the water cycle'],
+  expl:['Explain a topic','a {S} teacher who can explain hard topics simply','Explain the topic','text',"e.g. students don't understand what a decimal is"],
+  sum:['Student summary sheet','a {S} teacher who writes clear summaries for students','Write a student summary sheet','text','e.g. a unit summary before the test'],
+  par:['Message to parents','a homeroom teacher who writes to parents warmly and respectfully','Write a message to parents','short',"e.g. there's a test next week and I want them to help with practice"],
+  game:['Learning game','a developer of learning games for middle-school students','Build an interactive game','app','e.g. a matching game between a term and its definition'],
+  other:['Something else','an experienced middle-school {S} teaching assistant','','text','Write anything you need here']},
+ levels:{mix:'Mixed class',low:'Most are struggling',high:'Most are advanced',three:'Three separate levels'},
+ formats:{table:'Table',numbered:'Numbered list',questions:'Questions with answers',text:'Short text with headings',short:'Short message',app:'Game / interactive page'},
+ fmtTxt:{table:'Show the result as a table. For a lesson plan: stage | time in minutes | what the teacher does | what students do.',numbered:'Show the result as a numbered list, with an answer key at the end.',questions:'Each question has 4 answers, only one correct, and the wrong answers are based on common student mistakes. Mark the correct answer and add a one-sentence explanation.',text:'Write a short, clear text with headings, without complicated words.',short:'Write a short message, up to 5 lines, warm and respectful, with no student names.',app:'Build an interactive game that also works on phones: points, instant feedback after each answer, and an end screen with a "Play again" button.'},
+ lvlTxt:{mix:'The class has students at different levels.',low:'Most students struggle with this topic, so I need simple explanations and hints.',high:'Most students are advanced, so they can be challenged.',three:'Prepare three versions: level A for struggling students (with a hint), level B regular, and level C with a challenge.'},
+ L:{role:'You are {X}.',ctx:'I teach {S} in {G}, and the language of instruction is {L}.',task:'The task: {V} on: {T}.',mine:'In my own words: {W}',qty:'Amount / time: {Q}.',req:'Requirements:',age:"- Simple language suited to the students' age.",must:'- {M}',loc:"- Use examples from students' everyday lives.",fmt:'Format: {F}',ask:'Before you start: if important information is missing, ask me up to 3 short questions, and write the result only after I answer.',chk:'At the end, check yourself: is the content correct, is the level right, and did you meet every requirement? Fix anything that needs it.',lang:'Write the whole answer in {L}.',tw:'Use only the attached material.'},
+ parts:{role:'A role for the tool',ctx:'Class and language',task:'The task in your words',topic:'The topic',qty:'Amount or time',fmt:'Format of the result',lvl:'Student level'},
+ tips:{ctx:'Fill in subject, grade and language at the top',task:'Write at least one sentence in step 2',topic:'Fill in the topic at the top',qty:'Say how much (questions, minutes, exercises)',lvl:'Choose a student level'},
+ twNote:'In TestWiseAI: paste the learning material first, then this prompt.'
+}};
+
+const SUG = {
+ he: { add: '+ הוספה משלי', addQ: 'מה להוסיף לרשימה?', del: 'הסרה', pickS: 'בחרו מקצוע כדי לראות נושאים נפוצים',
+  S: { math: 'מתמטיקה', sci: 'מדעים', ar: 'ערבית', he: 'עברית', en: 'אנגלית', hist: 'היסטוריה', geo: 'גאוגרפיה', civ: 'אזרחות', rel: 'דת', tech: 'מחשבים וטכנולוגיה' } },
+ ar: { add: '+ إضافة خاصة بي', addQ: 'ماذا تريدون أن تضيفوا للقائمة؟', del: 'إزالة', pickS: 'اختاروا مادة لرؤية مواضيع شائعة',
+  S: { math: 'الرياضيات', sci: 'العلوم', ar: 'اللغة العربية', he: 'اللغة العبرية', en: 'اللغة الإنجليزية', hist: 'التاريخ', geo: 'الجغرافيا', civ: 'المدنيات', rel: 'الدين', tech: 'الحاسوب والتكنولوجيا' } },
+ en: { add: '+ Add my own', addQ: 'What should be added to the list?', del: 'Remove', pickS: 'Choose a subject to see common topics',
+  S: { math: 'Math', sci: 'Science', ar: 'Arabic', he: 'Hebrew', en: 'English', hist: 'History', geo: 'Geography', civ: 'Civics', rel: 'Religion', tech: 'Computers & technology' } }
+};
+const TOPICS = {
+ math: { he: ['שברים','מספרים עשרוניים','אחוזים','יחס ופרופורציה','משוואות','מספרים מכוונים','חזקות','פונקציה קווית','משפט פיתגורס','שטח והיקף','זוויות ומשולשים','סטטיסטיקה והסתברות'],
+  ar: ['الكسور','الأعداد العشرية','النسب المئوية','النسبة والتناسب','المعادلات','الأعداد الموجّهة','القوى','الدالة الخطية','نظرية فيثاغورس','المساحة والمحيط','الزوايا والمثلثات','الإحصاء والاحتمال'],
+  en: ['Fractions','Decimals','Percentages','Ratio and proportion','Equations','Negative numbers','Powers','Linear functions','Pythagorean theorem','Area and perimeter','Angles and triangles','Statistics and probability'] },
+ sci: { he: ['מחזור המים','מצבי צבירה','התא','מערכת העיכול','מערכת הנשימה','פוטוסינתזה','חומרים ותערובות','כוחות ותנועה','אנרגיה','חשמל','מערכת השמש','מערכות אקולוגיות'],
+  ar: ['دورة الماء في الطبيعة','حالات المادة','الخلية','الجهاز الهضمي','الجهاز التنفسي','التمثيل الضوئي','المواد والمخاليط','القوى والحركة','الطاقة','الكهرباء','المجموعة الشمسية','الأنظمة البيئية'],
+  en: ['The water cycle','States of matter','The cell','The digestive system','The respiratory system','Photosynthesis','Substances and mixtures','Forces and motion','Energy','Electricity','The solar system','Ecosystems'] },
+ ar: { he: ['הבנת הנקרא','דקדוק: משפט שמני ופועלי','כתיבת חיבור','שירה','סיפור קצר','פיסוק','אוצר מילים','כתיבת מכתב'],
+  ar: ['فهم المقروء','النحو: الجملة الاسمية والفعلية','كتابة موضوع إنشاء','الشعر','القصة القصيرة','علامات الترقيم','الثروة اللغوية','كتابة رسالة'],
+  en: ['Reading comprehension','Grammar: nominal and verbal sentences','Essay writing','Poetry','Short story','Punctuation','Vocabulary','Letter writing'] },
+ he: { he: ['הבנת הנקרא','אוצר מילים','זמני הפועל','שיחה יומיומית','כתיבת פסקה','שורשים ובניינים','הבעה בעל פה','קריאת כתבה'],
+  ar: ['فهم المقروء','الثروة اللغوية','أزمنة الفعل','محادثة يومية','كتابة فقرة','الجذور والأوزان','التعبير الشفهي','قراءة مقال'],
+  en: ['Reading comprehension','Vocabulary','Verb tenses','Everyday conversation','Writing a paragraph','Roots and verb patterns','Speaking','Reading an article'] },
+ en: { he: ['Present Simple','Past Simple','הבנת הנקרא','אוצר מילים','כתיבת פסקה','שאלות WH','שמות תואר והשוואה','Future: will / going to'],
+  ar: ['Present Simple','Past Simple','فهم المقروء','الثروة اللغوية','كتابة فقرة','أسئلة WH','الصفات والمقارنة','Future: will / going to'],
+  en: ['Present Simple','Past Simple','Reading comprehension','Vocabulary','Writing a paragraph','WH questions','Adjectives and comparisons','Future: will / going to'] },
+ hist: { he: ['מצרים העתיקה','יוון ורומא','ימי הביניים','האסלאם והח\'ליפות','המהפכה התעשייתית','מלחמת העולם הראשונה','מלחמת העולם השנייה','האימפריה העות\'מאנית'],
+  ar: ['مصر القديمة','اليونان وروما','العصور الوسطى','الإسلام والخلافة','الثورة الصناعية','الحرب العالمية الأولى','الحرب العالمية الثانية','الدولة العثمانية'],
+  en: ['Ancient Egypt','Greece and Rome','The Middle Ages','Islam and the Caliphate','The Industrial Revolution','World War I','World War II','The Ottoman Empire'] },
+ geo: { he: ['מפות וקנה מידה','אקלים ומזג אוויר','אוכלוסייה','ערים וכפרים','מקורות מים','משאבי טבע','יבשות ואוקיינוסים','איכות הסביבה'],
+  ar: ['الخرائط ومقياس الرسم','المناخ والطقس','السكان','المدن والقرى','مصادر المياه','الموارد الطبيعية','القارات والمحيطات','جودة البيئة'],
+  en: ['Maps and scale','Climate and weather','Population','Cities and villages','Water sources','Natural resources','Continents and oceans','The environment'] },
+ civ: { he: ['זכויות וחובות','דמוקרטיה','סובלנות וכבוד הדדי','קהילה ומעורבות','שלטון מקומי','זכויות ילדים'],
+  ar: ['الحقوق والواجبات','الديمقراطية','التسامح والاحترام المتبادل','المجتمع والمشاركة','الحكم المحلي','حقوق الطفل'],
+  en: ['Rights and duties','Democracy','Tolerance and mutual respect','Community and involvement','Local government','Children\'s rights'] },
+ rel: { he: ['ערכים ומידות טובות','סיפורי נביאים','חגים ומועדים','כבוד להורים','עזרה לזולת'],
+  ar: ['القيم والأخلاق الحميدة','قصص الأنبياء','الأعياد والمناسبات','برّ الوالدين','مساعدة الآخرين'],
+  en: ['Values and good character','Stories of the prophets','Holidays','Respecting parents','Helping others'] } ,
+ tech: { he: ['בטיחות ברשת','חלקי המחשב','אלגוריתמים','תכנות בסקראץ\'','עבודה עם גיליון אלקטרוני','בינה מלאכותית'],
+  ar: ['الأمان على الإنترنت','أجزاء الحاسوب','الخوارزميات','البرمجة بـ Scratch','العمل مع جدول بيانات','الذكاء الاصطناعي'],
+  en: ['Online safety','Computer parts','Algorithms','Programming in Scratch','Working with spreadsheets','Artificial intelligence'] }
+};
+
 (() => {
 const $ = (s) => document.querySelector(s);
 const ST = 'tkit-v1';
-let S = { lang: null, S: '', G: '', L: '', T: '', done: [], edits: {}, tab: 's2', cat: 'all' };
+let S = { lang: null, S: '', G: '', L: '', T: '', done: [], edits: {}, slots: {}, tab: 's2', cat: 'all' };
 try { Object.assign(S, JSON.parse(localStorage.getItem(ST) || '{}')); } catch (e) {}
 if (!I18N[S.lang]) { const n = (navigator.language || '').slice(0, 2); S.lang = n === 'ar' ? 'ar' : n === 'en' ? 'en' : 'he'; }
 const save = () => { try { localStorage.setItem(ST, JSON.stringify(S)); } catch (e) {} };
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const U = () => I18N[S.lang];
 const vals = () => { const u = U(); return { S: S.S.trim(), G: S.G ? u.grades[S.G] : '', L: S.L ? u.langs[S.L] : '', T: S.T.trim() }; };
+const FH = { he: '✏️ השלימו ישר בתוך המשבצות הצהובות, ואז העתיקו', ar: '✏️ أكملوا مباشرة داخل الخانات الصفراء، ثم انسخوا', en: '✏️ Fill in the yellow boxes right inside the prompt, then copy' };
+const slotK = (key, i) => S.lang + ':' + key + ':' + i;
+const wch = (s) => Math.max(5, Math.ceil([...String(s)].length * 1.25 + 2));
 function fill(key, html) {
-  const u = U(), v = vals(); let t = PROMPTS[S.lang][key];
-  if (!html) return t.replace(/\{([SGLT])\}/g, (_, k) => v[k] || u.ph[k]);
-  return esc(t).replace(/\{([SGLT])\}/g, (_, k) => v[k] ? `<span class="v">${esc(v[k])}</span>` : `<span class="f">${u.ph[k]}</span>`).replace(/\[([^\]{}]+)\]/g, (m) => `<span class="f">${m}</span>`);
+  const u = U(), v = vals(), t = PROMPTS[S.lang][key]; let i = -1;
+  S.slots = S.slots || {};
+  if (!html) return t.replace(/\{([SGLT])\}|\[([^\]{}]+)\]/g, (m, k, p) => { if (k) return v[k] || u.ph[k]; i++; const s = (S.slots[slotK(key, i)] || '').trim(); return s || m; });
+  return t.split(/(\{[SGLT]\}|\[[^\]{}]+\])/).map((part) => {
+    let m = part.match(/^\{([SGLT])\}$/);
+    if (m) {
+      const k = m[1], ph = u.ph[k].replace(/[\[\]]/g, '');
+      if (k === 'G' || k === 'L') {
+        const opts = k === 'G' ? [7, 8, 9].map((x) => [x, u.grades[x]]) : ['ar', 'he', 'en'].map((x) => [x, u.langs[x]]);
+        return `<select class="fi${S[k] ? '' : ' em'}" data-v="${k}"><option value="">${esc(ph)}</option>${opts.map(([x, l]) => `<option value="${x}"${String(S[k]) === String(x) ? ' selected' : ''}>${esc(l)}</option>`).join('')}</select>`;
+      }
+      return `<input class="fi${S[k].trim() ? '' : ' em'}" data-v="${k}" value="${esc(S[k])}" placeholder="${esc(ph)}" style="width:${wch(S[k] || ph)}ch" autocomplete="off">`;
+    }
+    m = part.match(/^\[([^\]{}]+)\]$/);
+    if (m) {
+      i++; const sk = slotK(key, i), val = S.slots[sk] || '', ph = m[1];
+      if (/הדביק|الصق|paste/i.test(ph)) return `<textarea class="fi big${val.trim() ? '' : ' em'}" data-s="${sk}" placeholder="${esc(ph)}">${esc(val)}</textarea>`;
+      return `<input class="fi${val.trim() ? '' : ' em'}" data-s="${sk}" value="${esc(val)}" placeholder="${esc(ph)}" style="width:${wch(val || ph)}ch" autocomplete="off">`;
+    }
+    return esc(part);
+  }).join('');
 }
 const ekey = (k) => S.lang + ':' + k;
 function promptBox(key, color, title) {
   const u = U(), ed = S.edits[ekey(key)];
   return `<div class="pr" data-k="${key}" style="--c:${color}"><div class="prh"><b>${esc((title || TITLES[S.lang][key]).trim())}</b><button class="btn gh" data-a="edit">${u.editB}</button><button class="btn" data-a="copy">${u.copy}</button></div>`
-    + (ed != null ? `<textarea>${esc(ed)}</textarea><div class="edited">${u.edit} · <button class="btn gh" data-a="restore" style="padding:2px 10px;font-size:13px">${u.restore}</button></div>` : `<div class="txt">${fill(key, true)}</div>`) + `</div>`;
+    + (ed != null ? `<textarea>${esc(ed)}</textarea><div class="edited">${u.edit} · <button class="btn gh" data-a="restore" style="padding:2px 10px;font-size:13px">${u.restore}</button></div>` : `<div class="txt">${fill(key, true)}</div><div class="tiph">${FH[S.lang]}</div>`) + `</div>`;
 }
 const openBtn = (t) => `<a class="open" href="${TOOLS[t][1]}" target="_blank" rel="noopener">${U().open} <span class="ltr">${TOOLS[t][0]}</span> ↗</a>`;
 
@@ -352,14 +559,14 @@ function fields() {
   $('#fS').placeholder = u.fSph; $('#fT').placeholder = u.fTph;
 }
 function readyLine() { const n = ['S', 'G', 'L', 'T'].filter((k) => !String(S[k]).trim()).length, r = $('#ready'); r.textContent = n ? U().left(n) : U().ready; r.className = 'ready ' + (n ? 'no' : 'ok'); }
-function refreshTexts() { document.querySelectorAll('.pr').forEach((el) => { const t = el.querySelector('.txt'); if (t) t.innerHTML = fill(el.dataset.k, true); }); readyLine(); }
+function refreshTexts() { document.querySelectorAll('.fi[data-v]').forEach((el) => { const k = el.dataset.v; if (el !== document.activeElement) { el.value = S[k]; if (el.tagName === 'INPUT') el.style.width = wch(S[k] || el.placeholder) + 'ch'; } el.classList.toggle('em', !String(S[k]).trim()); }); readyLine(); }
 function applyLang() {
   const u = U(); document.documentElement.lang = S.lang; document.documentElement.dir = u.dir; document.title = u.title;
   document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = u[el.dataset.t]; });
   document.querySelectorAll('#langs button').forEach((b) => b.classList.toggle('on', b.dataset.l === S.lang));
   fields(); renderS2(); renderLib(); renderHow(); readyLine(); showTab(S.tab);
 }
-function showTab(p) { S.tab = p; document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.p === p)); document.querySelectorAll('.pane').forEach((x) => x.classList.toggle('on', x.id === p)); $('#bar').classList.toggle('on', p === 's2'); save(); }
+function showTab(p) { if (!document.getElementById(p)) p = 's2'; S.tab = p; document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.p === p)); document.querySelectorAll('.pane').forEach((x) => x.classList.toggle('on', x.id === p)); $('#bar').classList.toggle('on', p === 's2'); save(); }
 
 document.querySelectorAll('#langs button').forEach((b) => b.addEventListener('click', () => { S.lang = b.dataset.l; save(); applyLang(); }));
 document.querySelectorAll('#tabs button').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.p)));
@@ -381,8 +588,17 @@ document.addEventListener('click', (e) => {
   } else if (a === 'restore') { delete S.edits[ekey(k)]; save(); rerenderBox(box); }
 });
 function rerenderBox(box) { const k = box.dataset.k, c = box.style.getPropertyValue('--c'), title = box.querySelector('.prh b').textContent; const tmp = document.createElement('div'); tmp.innerHTML = promptBox(k, c, title); box.replaceWith(tmp.firstChild); }
-document.addEventListener('input', (e) => { const ta = e.target.closest('.pr textarea'); if (!ta) return; S.edits[ekey(ta.closest('.pr').dataset.k)] = ta.value; save(); });
+function inline(e) {
+  const el = e.target; if (!el.classList || !el.classList.contains('fi')) return false;
+  if (el.dataset.v) { const k = el.dataset.v; S[k] = el.value; const f = $('#f' + k); f.value = el.value; f.dispatchEvent(new Event(k === 'G' || k === 'L' ? 'change' : 'input')); }
+  else { S.slots[el.dataset.s] = el.value; el.classList.toggle('em', !el.value.trim()); }
+  if (el.tagName === 'INPUT') el.style.width = wch(el.value || el.placeholder) + 'ch';
+  if (el.tagName === 'TEXTAREA') { el.style.height = 'auto'; el.style.height = el.scrollHeight + 2 + 'px'; }
+  save(); return true;
+}
+document.addEventListener('input', (e) => { if (inline(e)) return; const ta = e.target.closest('.pr textarea'); if (!ta) return; S.edits[ekey(ta.closest('.pr').dataset.k)] = ta.value; save(); });
 document.addEventListener('change', (e) => {
+  if (e.target.matches && e.target.matches('select.fi')) { inline(e); return; }
   const c = e.target.closest('.step .dn input'); if (!c) return;
   const st = c.closest('.step'), i = +st.dataset.i;
   S.done = S.done.filter((x) => x !== i); if (c.checked) S.done.push(i);
@@ -391,6 +607,137 @@ document.addEventListener('change', (e) => {
 });
 $('#rst').addEventListener('click', () => { if (!confirm(U().resetQ)) return; S.done = []; save(); renderS2(); scrollTo({ top: 0, behavior: 'smooth' }); });
 applyLang();
+})();
+
+/* ---------- prompt builder (free text → ready prompt) ---------- */
+(() => {
+const $ = (s) => document.querySelector(s);
+const KEY = 'tkit-build-v2';
+let B = { words: '', add: { ask: false, chk: true, loc: true }, edited: null };
+try { Object.assign(B, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(B)); } catch (e) {} };
+const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const lang = () => document.documentElement.lang || 'he';
+const prof = () => { try { return JSON.parse(localStorage.getItem('tkit-v1') || '{}'); } catch (e) { return {}; } };
+const DETECT = [
+  ['par', /הור(ים|ה)|أهل|اهل|أولياء|parent/i],
+  ['game', /משחק|لعب|game/i],
+  ['quiz', /שאל|בוחן|מבחן|מבדק|أسئل|سؤال|اختبار|امتحان|quiz|question|test/i],
+  ['work', /דף עבודה|תרגיל|תרגול|ورقة عمل|تمارين|تمرين|worksheet|exercise|practice/i],
+  ['plan', /מערך|שיעור|خطة|درس|lesson/i],
+  ['sum', /סיכום|ملخ|تلخيص|summar/i],
+  ['expl', /הסבר|להסביר|מסביר|شرح|اشرح|explain/i]];
+const detect = (w) => { for (const [k, r] of DETECT) if (r.test(w)) return k; return 'other'; };
+function build() {
+  const l = lang(), b = BUILD[l], u = I18N[l], p = prof();
+  const v = { S: (p.S || '').trim(), G: p.G ? u.grades[p.G] : '', L: p.L ? u.langs[p.L] : '', T: (p.T || '').trim() };
+  const sub = (t, m) => t.replace(/\{([A-Z])\}/g, (_, k) => (m && m[k] != null ? m[k] : (v[k] || u.ph[k])));
+  const w = B.words.trim(), type = detect(w), ty = b.types[type], A = B.add;
+  const out = [sub(b.L.role, { X: sub(ty[1]) }), sub(b.L.ctx)];
+  out.push(w ? sub(b.L.mine, { W: w }) : '…');
+  if (v.T) out.push(sub(b.L.task, { V: ty[2] || ty[0] }));
+  const req = [b.L.age];
+  if (A.loc) req.push(b.L.loc);
+  if (A.three) req.push('- ' + b.lvlTxt.three);
+  if (A.short) req.push('- ' + b.addTxt.short);
+  if (A.key) req.push('- ' + b.addTxt.key);
+  out.push(b.L.req + '\n' + req.join('\n'));
+  out.push(sub(b.L.fmt, { F: A.table ? b.addTxt.table : b.fmtTxt[ty[3]] }));
+  if (A.ask) out.push(b.L.ask);
+  if (A.chk) out.push(b.L.chk);
+  out.push(sub(b.L.lang));
+  return { text: out.join('\n\n'), type };
+}
+function render() {
+  const l = lang(), b = BUILD[l], el = $('#build'); if (!el) return;
+  const tb = document.querySelector('#tabs button[data-p="build"]'); if (tb) tb.textContent = b.tab;
+  el.innerHTML = `<section class="card bld">
+    <h2 class="bh">${esc(b.h)}</h2><p class="bp">${esc(b.p)}</p>
+    <textarea id="bW" class="bw" placeholder="${esc(b.wPh)}">${esc(B.words)}</textarea>
+    <div class="bq">${esc(b.addH)}</div>
+    <div class="tchips">${Object.entries(b.adds).map(([k, t]) => `<button data-ad="${k}" class="${B.add[k] ? 'on' : ''}">${B.add[k] ? '✓' : '+'} ${esc(t)}</button>`).join('')}</div>
+  </section>
+  <section class="card bout" id="bOut"></section>`;
+  $('#bW').addEventListener('input', (e) => { B.words = e.target.value; B.edited = null; save(); out(); });
+  document.querySelectorAll('#build [data-ad]').forEach((x) => x.addEventListener('click', () => { const k = x.dataset.ad; B.add[k] = !B.add[k]; B.edited = null; save(); x.classList.toggle('on', B.add[k]); x.textContent = (B.add[k] ? '✓ ' : '+ ') + b.adds[k]; out(); }));
+  out();
+}
+function out() {
+  const l = lang(), b = BUILD[l], u = I18N[l], r = build(), box = $('#bOut'); if (!box) return;
+  const text = B.edited != null ? B.edited : r.text;
+  box.innerHTML = `<div class="bo-h"><h3>${esc(b.outH)}</h3><button class="btn" id="bCopy">${u.copy}</button></div>
+    ${B.words.trim() ? `<div class="det">${esc(b.detected)} <b>${esc(b.types[r.type][0])}</b></div>` : `<div class="note b"><span>✏️</span><span>${esc(b.needWords)}</span></div>`}
+    <textarea id="bP" class="bp-out" spellcheck="false">${esc(text)}</textarea>
+    <div class="bo-f"><span class="hint">${esc(b.edit)}</span>${B.edited != null ? `<button class="mini" id="bR">${esc(b.reset)}</button>` : ''}</div>
+    <div class="bo-f"><a class="open" style="--c:var(--any)" href="${TOOLS.gemini[1]}" target="_blank" rel="noopener">${u.open} <span class="ltr">Gemini</span> ↗</a>
+    <a class="open" style="--c:var(--tw)" href="${TOOLS.testwise[1]}" target="_blank" rel="noopener">${u.open} <span class="ltr">TestWiseAI</span> ↗</a></div>`;
+  const ta = $('#bP'); const fit = () => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 4 + 'px'; }; fit();
+  ta.addEventListener('input', () => { B.edited = ta.value; save(); fit(); if (!$('#bR')) out(); });
+  const rb = $('#bR'); if (rb) rb.addEventListener('click', () => { B.edited = null; save(); out(); });
+  $('#bCopy').addEventListener('click', (e) => {
+    const t = $('#bP').value, btn = e.currentTarget;
+    const done = () => { btn.textContent = u.copied; btn.classList.add('ok'); setTimeout(() => { btn.textContent = u.copy; btn.classList.remove('ok'); }, 1600); };
+    const fb = () => { const x = $('#bP'); x.select(); try { document.execCommand('copy'); } catch (er) {} done(); };
+    try { navigator.clipboard.writeText(t).then(done, fb); } catch (er) { fb(); }
+  });
+}
+window.TKBuild = { render, out };
+document.querySelectorAll('#langs button').forEach((x) => x.addEventListener('click', () => setTimeout(render, 0)));
+['fS', 'fT', 'fG', 'fL'].forEach((id) => { const el = document.getElementById(id); if (!el) return; const f = () => setTimeout(() => { if (B.edited == null) out(); }, 0); el.addEventListener('input', f); el.addEventListener('change', f); });
+render();
+})();
+
+/* ---------- suggestions: common subjects & topics + teacher's own ---------- */
+(() => {
+const $ = (s) => document.querySelector(s);
+const KEY = 'tkit-mine-v1';
+let M = { S: [], T: {} };
+try { Object.assign(M, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(M)); } catch (e) {} };
+const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const lang = () => document.documentElement.lang || 'he';
+const subjKey = (s) => { s = (s || '').trim(); if (!s) return null; for (const L of ['he', 'ar', 'en']) for (const [k, v] of Object.entries(SUG[L].S)) if (v === s || v.replace(/^اللغة /, '') === s) return k; return null; };
+const tKey = (s) => subjKey(s) || (s || '').trim();
+const uniq = (a) => [...new Set(a.filter(Boolean))];
+function subjects() { const l = lang(); return uniq([...Object.values(SUG[l].S), ...M.S]); }
+function topics() { const s = $('#fS').value, k = subjKey(s), l = lang(); return uniq([...(k && TOPICS[k] ? TOPICS[k][l] : []), ...(M.T[tKey(s)] || [])]); }
+function chips(box, list, mine, cur, kind) {
+  const l = lang(), u = SUG[l];
+  box.innerHTML = list.map((x) => `<span class="sg${x === cur ? ' on' : ''}"><button type="button" data-pick="${kind}" data-x="${esc(x)}">${esc(x)}</button>${mine.includes(x) ? `<button type="button" class="dx" data-del="${kind}" data-x="${esc(x)}" aria-label="${u.del}" title="${u.del}">×</button>` : ''}</span>`).join('')
+    + `<button type="button" class="sg add" data-add="${kind}">${u.add}</button>`
+    + (kind === 'T' && !subjKey($('#fS').value) && !list.length ? `<span class="sgh">${u.pickS}</span>` : '');
+}
+function lists() {
+  ['S', 'T'].forEach((k) => {
+    const dl = document.getElementById('dl' + k), items = k === 'S' ? subjects() : topics();
+    dl.innerHTML = items.map((x) => `<option value="${esc(x)}">`).join('');
+  });
+}
+function render() {
+  chips($('#sgS'), subjects(), M.S, $('#fS').value.trim(), 'S');
+  chips($('#sgT'), topics(), M.T[tKey($('#fS').value)] || [], $('#fT').value.trim(), 'T');
+  lists();
+  document.querySelectorAll('.fi[data-v="S"],.fi[data-v="T"]').forEach((el) => el.setAttribute('list', 'dl' + el.dataset.v));
+}
+function set(k, x) { const f = $('#f' + k); f.value = x; f.dispatchEvent(new Event('input', { bubbles: true })); }
+function addMine(k, x) {
+  x = (x || '').trim(); if (!x) return;
+  if (k === 'S') { if (!subjects().includes(x)) M.S.push(x); }
+  else { const tk = tKey($('#fS').value); M.T[tk] = M.T[tk] || []; if (!topics().includes(x)) M.T[tk].push(x); }
+  save();
+}
+document.addEventListener('click', (e) => {
+  const p = e.target.closest('[data-pick]'); if (p) { set(p.dataset.pick, p.dataset.x); render(); return; }
+  const d = e.target.closest('[data-del]'); if (d) { const k = d.dataset.del, x = d.dataset.x; if (k === 'S') M.S = M.S.filter((y) => y !== x); else { const tk = tKey($('#fS').value); M.T[tk] = (M.T[tk] || []).filter((y) => y !== x); } save(); render(); return; }
+  const a = e.target.closest('[data-add]'); if (a) { const k = a.dataset.add, x = prompt(SUG[lang()].addQ); if (x && x.trim()) { addMine(k, x); set(k, x.trim()); render(); } }
+});
+// whatever a teacher types and leaves in the field is remembered as theirs
+['S', 'T'].forEach((k) => $('#f' + k).addEventListener('change', (e) => { addMine(k, e.target.value); render(); }));
+document.addEventListener('change', (e) => { const el = e.target; if (el.matches && el.matches('.fi[data-v="S"],.fi[data-v="T"]')) { addMine(el.dataset.v, el.value); render(); } });
+['fS', 'fT'].forEach((id) => $('#' + id).addEventListener('input', () => setTimeout(render, 0)));
+document.querySelectorAll('#langs button,#tabs button').forEach((b) => b.addEventListener('click', () => setTimeout(render, 0)));
+new MutationObserver(() => document.querySelectorAll('.fi[data-v="S"]:not([list]),.fi[data-v="T"]:not([list])').forEach((el) => el.setAttribute('list', 'dl' + el.dataset.v))).observe(document.body, { childList: true, subtree: true });
+render();
 })();
 
 </script>
