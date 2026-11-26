@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ערכת הבינה המלאכותית של המורה</title>
+<meta name="description" content="הנחיות מוכנות להעתקה ל-Gemini, ל-TestWiseAI ולכל כלי בינה מלאכותית · עברית · العربية · English">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Noto+Sans+Arabic:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--ink:#141726;--soft:#3d425c;--muted:#6a7090;--line:#dde1ef;--tint:#eef1fa;--gem:#2f6fed;--tw:#0b9a84;--cl:#c8701e;--any:#6a4fd8;--warn:#b7791f;--bad:#d6336c;--fld:#fff1cc;--fldink:#8a5a00;--sh:0 1px 2px rgba(20,23,38,.05),0 6px 24px rgba(20,23,38,.06);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0f16;--card:#161a29;--ink:#eceefa;--soft:#c5cae0;--muted:#9097b5;--line:#2a3050;--tint:#1c2136;--gem:#7fb4ff;--tw:#33e6c8;--cl:#ffb46b;--any:#a99dff;--warn:#fbbf24;--bad:#fb7185;--fld:#3a2f10;--fldink:#ffd27a;--sh:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d0f16;--card:#161a29;--ink:#eceefa;--soft:#c5cae0;--muted:#9097b5;--line:#2a3050;--tint:#1c2136;--gem:#7fb4ff;--tw:#33e6c8;--cl:#ffb46b;--any:#a99dff;--warn:#fbbf24;--bad:#fb7185;--fld:#3a2f10;--fldink:#ffd27a;--sh:none;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Heebo,'Noto Sans Arabic',system-ui,sans-serif;-webkit-text-size-adjust:100%}
+html[lang=ar] body{font-family:'Noto Sans Arabic',Heebo,system-ui,sans-serif}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 100px}
+.top{background:linear-gradient(135deg,#1b1f4a,#0f2f3a);color:#fff;padding:18px 0 22px}
+.top .wrap{padding-bottom:0}
+.tb{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.langs{display:flex;gap:6px;background:rgba(255,255,255,.1);padding:4px;border-radius:999px}
+.langs button{border:0;background:none;color:#fff;padding:6px 14px;border-radius:999px;font-weight:700;font-size:15px}
+.langs button.on{background:#fff;color:#1b1f4a}
+.sp{flex:1}
+.thm{border:1px solid rgba(255,255,255,.35);background:none;color:#fff;border-radius:999px;width:38px;height:38px;font-size:17px}
+h1{font:900 30px/1.2 inherit;margin:18px 0 4px;font-family:inherit}
+.top p{margin:0;color:#cfd5f5;font-size:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:16px 0;box-shadow:var(--sh)}
+.prof{border:2px solid var(--warn);margin-top:-14px;position:relative}
+.prof h2{margin:0 0 2px;font:800 21px/1.3 inherit;font-family:inherit}
+.prof>p{margin:0 0 12px;color:var(--soft);font-size:15px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.fg{grid-template-columns:1fr}h1{font-size:25px}}
+label{display:block;font-weight:700;font-size:15px;margin-bottom:4px}
+input,select{width:100%;font:inherit;font-size:17px;padding:11px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:3px solid color-mix(in srgb,var(--warn) 45%,transparent);border-color:var(--warn)}
+.ready{margin-top:10px;font-weight:700;font-size:15px}
+.ready.ok{color:var(--tw)}.ready.no{color:var(--warn)}
+.tabs{display:flex;gap:6px;margin:22px 0 6px;overflow-x:auto;scrollbar-width:none}
+.tabs button{flex:none;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:9px 16px;font-weight:700;font-size:15px;color:var(--soft)}
+.tabs button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pane{display:none}.pane.on{display:block}
+.part{display:flex;align-items:center;gap:10px;margin:26px 0 2px}
+.part b{font:900 24px/1 inherit;font-family:inherit;color:var(--c)}
+.part span{color:var(--muted);font-weight:500}
+.part::after{content:"";flex:1;height:2px;background:var(--line)}
+.step{border-inline-start:6px solid var(--c)}
+.step.done{opacity:.7}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.num{width:36px;height:36px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+:root[data-theme="dark"] .num{color:#0d0f16}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .num{color:#0d0f16}}
+.sh h3{margin:0;font:800 20px/1.3 inherit;font-family:inherit;flex:1}
+.dn{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;margin:0}
+.dn input{width:20px;height:20px;accent-color:var(--tw);padding:0}
+ol.do{margin:6px 0 8px;padding-inline-start:22px}ol.do li{margin:3px 0}
+.pr{background:var(--tint);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0}
+.prh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.prh b{font-size:15px;color:var(--c);flex:1;min-width:120px}
+.prh b:empty{min-width:0}
+.txt{white-space:pre-wrap;word-break:break-word;font-size:16px;line-height:1.6}
+.txt .v{color:var(--c);font-weight:700}
+.f{background:var(--fld);color:var(--fldink);border-radius:6px;padding:0 5px;font-weight:700;display:inline-block;unicode-bidi:isolate;white-space:nowrap;line-height:1.4}
+textarea{width:100%;min-height:160px;font:inherit;font-size:16px;line-height:1.6;padding:10px;border-radius:10px;border:1.5px solid var(--warn);background:var(--card);color:var(--ink);resize:vertical}
+.btn{border:0;border-radius:999px;padding:8px 18px;font-weight:800;font-size:15px;background:var(--c);color:#fff;white-space:nowrap}
+:root[data-theme="dark"] .btn{color:#0d0f16}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0d0f16}}
+.btn.ok{background:var(--warn)}
+.btn.gh{background:none;border:1.5px solid var(--line);color:var(--soft);font-weight:700;padding:7px 14px}
+.edited{font-size:13px;color:var(--warn);font-weight:700;margin-top:6px}
+a.open{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--c);border:2px solid var(--c);border-radius:999px;padding:6px 16px;text-decoration:none;margin:4px 0 4px 6px}
+html[dir=ltr] a.open{margin:4px 6px 4px 0}
+.note{display:flex;gap:10px;padding:10px 12px;border-radius:12px;font-size:15.5px;margin-top:8px;background:color-mix(in srgb,var(--warn) 11%,transparent);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent)}
+.note.b{background:color-mix(in srgb,var(--bad) 9%,transparent);border-color:color-mix(in srgb,var(--bad) 45%,transparent)}
+ul.ck{list-style:none;margin:6px 0 0;padding:0}
+ul.ck li{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed var(--line)}
+ul.ck li:last-child{border-bottom:0}
+ul.ck input{width:20px;height:20px;margin-top:4px;flex:none;accent-color:var(--tw);padding:0}
+.hw{border:2px solid var(--tw)}.hw h3{margin:0 0 4px;font:800 20px inherit;font-family:inherit}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.chips button{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;color:var(--soft)}
+.chips button.on{background:var(--any);border-color:var(--any);color:#fff}
+.lib .tag{font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c)}
+.lib h3{margin:0;font:800 19px/1.3 inherit;font-family:inherit;flex:1}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:600px){.rules{grid-template-columns:1fr}}
+.rule{border-radius:14px;padding:14px;background:var(--tint)}
+.rule b{display:block;font:900 28px/1.1 inherit;font-family:inherit;color:var(--any)}
+.cmp{border-radius:14px;padding:14px;margin:10px 0}
+.cmp.x{background:color-mix(in srgb,var(--bad) 8%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent)}
+.cmp.v{background:color-mix(in srgb,var(--tw) 8%,transparent);border:1px solid color-mix(in srgb,var(--tw) 45%,transparent)}
+.cmp h4{margin:0 0 4px}.cmp p{margin:0}.cmp small{display:block;margin-top:6px;color:var(--soft)}
+.tips{margin:8px 0 0;padding-inline-start:22px}.tips li{margin:6px 0}
+.bar{position:fixed;bottom:0;right:0;left:0;background:color-mix(in srgb,var(--card) 95%,transparent);border-top:1px solid var(--line);backdrop-filter:blur(8px);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:none}
+.bar.on{display:block}
+.bar .in{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px}
+.bar .trk{flex:1;height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.bar .trk i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gem),var(--tw));transition:width .4s}
+footer{text-align:center;color:var(--muted);font-weight:700;margin:30px 0 10px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="tb"><div class="langs" id="langs"><button data-l="he">עברית</button><button data-l="ar">العربية</button><button data-l="en">English</button></div><span class="sp"></span><button class="thm" id="thm" aria-label="theme">◐</button></div>
+  <h1 data-t="title"></h1><p data-t="sub"></p>
+</div></header>
+<div class="wrap">
+  <section class="card prof">
+    <h2 data-t="profH"></h2><p data-t="profP"></p>
+    <div class="fg">
+      <div><label for="fS" data-t="fS"></label><input id="fS" autocomplete="off"></div>
+      <div><label for="fG" data-t="fG"></label><select id="fG"></select></div>
+      <div><label for="fL" data-t="fL"></label><select id="fL"></select></div>
+      <div><label for="fT" data-t="fT"></label><input id="fT" autocomplete="off"></div>
+    </div>
+    <div class="ready" id="ready"></div>
+  </section>
+  <nav class="tabs" id="tabs"><button data-p="s2" class="on" data-t="tab1"></button><button data-p="lib" data-t="tab2"></button><button data-p="how" data-t="tab3"></button></nav>
+  <section class="pane on" id="s2"></section>
+  <section class="pane" id="lib"></section>
+  <section class="pane" id="how"></section>
+  <footer data-t="foot"></footer>
+</div>
+<div class="bar" id="bar"><div class="in"><span id="prog"></span><div class="trk"><i id="progFill"></i></div><button class="btn gh" id="rst" data-t="reset"></button></div></div>
+<script>
+const I18N = {
+he: { dir:'rtl', name:'עברית',
+  title:'ערכת הבינה המלאכותית של המורה', sub:'הנחיות מוכנות להעתקה ל-Gemini, ל-TestWiseAI ולכל כלי בינה מלאכותית',
+  profH:'הפרטים שלי', profP:'ממלאים פעם אחת. הפרטים נכנסים לבד לכל ההנחיות, ונשמרים בדפדפן לפעם הבאה.',
+  fS:'המקצוע שלי', fSph:'למשל: מדעים', fG:'הכיתה', fL:'השפה שבה התלמידים לומדים', fT:'הנושא', fTph:'למשל: מחזור המים', choose:'בחרו',
+  grades:{7:"כיתה ז'",8:"כיתה ח'",9:"כיתה ט'"}, langs:{ar:'ערבית',he:'עברית',en:'אנגלית'},
+  ph:{S:'[מקצוע]',G:'[כיתה]',L:'[שפה]',T:'[נושא]'},
+  left:(n)=>`נשארו ${n} שדות למלא`, ready:'✓ מעולה. כל ההנחיות מוכנות',
+  tab1:'מפגש 2: שיעור ובוחן', tab2:'ספריית הנחיות', tab3:'איך כותבים הנחיה טובה',
+  editB:'✎ עריכה', copy:'העתק', copied:'✓ הועתק', edit:'אפשר לערוך את ההנחיה לפני ההעתקה', restore:'↺ להחזיר למקור', open:'פתחו את', done:'סיימתי',
+  partA:'מתכננים את השיעור', partB:'בונים בוחן לסוף השיעור', of:'מתוך', reset:'איפוס', resetQ:'לאפס את ההתקדמות במפגש?',
+  all:'הכול', any:'כל כלי',
+  cats:{plan:'תכנון',adapt:'התאמה',assess:'הערכה',comm:'תקשורת',lang:'שפה',learn:'למידה עצמית'},
+  steps:[
+   ['נכנסים ל-Gemini',['פותחים את Gemini בלשונית חדשה.','נכנסים עם חשבון הגוגל של בית הספר.','רואים שדה כתיבה למטה? אתם בפנים.'],null,'לא מצליחים להיכנס? לא מתעכבים. עובדים עם השכן, ונכנסים אחר כך.'],
+   ['מבקשים מערך שיעור',['מעתיקים את ההנחיה.','מדביקים ב-Gemini ושולחים.'],['plan'],null],
+   ['משפרים, ובודקים בעצמנו',['בוחרים שיפור אחד, מעתיקים ושולחים באותה שיחה.'],['fix1','fix2','fix3','fix4'],null,['התוכן נכון, לפי הספר ותוכנית הלימודים','הזמנים מסתכמים ל-45 דקות','הרמה והשפה מתאימות לכיתה שלי','יש פעילות שבה התלמידים עובדים']],
+   ['מבקשים דף סיכום לתלמיד',['מעתיקים ושולחים באותה שיחה.','קוראים את הדף ומתקנים טעויות.','מעתיקים את כל הדף שקיבלתם.'],['summary'],'מהדף הזה ייבנה הבוחן. טעות בדף תהפוך לטעות בשאלה.'],
+   ['פותחים בוחן חדש',['פותחים את TestWiseAI בלשונית חדשה ונכנסים.','יוצרים בוחן חדש מטקסט חופשי.'],null,null],
+   ['מדביקים חומר והוראות',['מדביקים את דף הסיכום מ-Gemini.','מעתיקים מכאן את ההוראות ומדביקים גם אותן.','יוצרים, ומחכים לשאלות.'],['quiz'],'הטעות הנפוצה: מדביקים רק את ההוראות ושוכחים את דף הסיכום.'],
+   ['בודקים כל שאלה',[],null,'חובה: לתקן או למחוק לפחות שאלה אחת.',['יש תשובה נכונה אחת בדיוק','השאלה והתשובות מדברות על אותו דבר','הכותרת לא מגלה את התשובה','התשובות השגויות סבירות','מתאים לכיתה שלי: שפה, רמה, ומה שלימדתי']],
+   ['מפרסמים ומשתפים',['מפרסמים כתרגול, ללא ציון.','שולחים את הקישור לשכן ופותרים את הבוחן שלו.','בשאלה אחת טועים בכוונה וקוראים את ההסבר.'],null,null]],
+  task:['המשימה עד המפגש הבא','מלמדים את השיעור שתכננתם.','ב-5 הדקות האחרונות: התלמידים פותרים את הבוחן.','מביאים נתון אחד: השאלה שהכי הרבה תלמידים טעו בה.'],
+  rules:[['למי?','מקצוע, כיתה, רמה ושפה.'],['מה?','הנושא, כמה זמן, ומה חייב להיות בפנים.'],['איך?','באיזו צורה לקבל את התוצאה: טבלה, רשימה, אורך.']],
+  rulesH:'בכל הנחיה: למי, מה, איך', badH:'הנחיה לא טובה', goodH:'הנחיה טובה',
+  bad:'תכין לי שיעור על שברים.', badWhy:'הכלי לא יודע לאיזו כיתה, כמה זמן, באיזו שפה ומה צריך להיות בשיעור. הוא ינחש.',
+  good:"אתה מורה למתמטיקה בחטיבת ביניים. אני מלמד כיתה ז', בערבית. בנה שיעור של 45 דקות על חיבור שברים: מטרות, פתיחה מחיי התלמידים, פעילות בזוגות ושלוש שאלות לבדיקת הבנה. הצג כטבלה: שלב, זמן, מה עושה המורה, מה עושים התלמידים.",
+  tips:['משפרים באותה שיחה במשפט אחד: "קצר", "פשט לכיתה ז\'", "הוסף דוגמה מהחיים".','מבקשים: "לפני שאתה מתחיל, שאל אותי מה חסר לך".','ב-TestWiseAI: נותנים חומר מלא (לא רק שם הנושא) והוראות ברורות.','לא מזינים שמות, ציונים או פרטים אישיים של תלמידים.','הכלי מציע. המורה בודק ומחליט.'],
+  tipsH:'5 כללים קצרים', foot:'הבינה המלאכותית מציעה. המורה מחליט.' },
+
+ar: { dir:'rtl', name:'العربية',
+  title:'حقيبة المعلّم للذكاء الاصطناعي', sub:'تعليمات جاهزة للنسخ إلى Gemini وTestWiseAI وأي أداة ذكاء اصطناعي',
+  profH:'معلوماتي', profP:'تُملأ مرة واحدة. تدخل المعلومات تلقائيًا في كل التعليمات، وتُحفظ في المتصفح للمرة القادمة.',
+  fS:'المادة التي أدرّسها', fSph:'مثلًا: العلوم', fG:'الصف', fL:'لغة التعلّم عند الطلاب', fT:'الموضوع', fTph:'مثلًا: دورة الماء في الطبيعة', choose:'اختاروا',
+  grades:{7:'الصف السابع',8:'الصف الثامن',9:'الصف التاسع'}, langs:{ar:'العربية',he:'العبرية',en:'الإنجليزية'},
+  ph:{S:'[المادة]',G:'[الصف]',L:'[اللغة]',T:'[الموضوع]'},
+  left:(n)=>`بقي ${n} من الحقول`, ready:'✓ ممتاز. كل التعليمات جاهزة',
+  tab1:'اللقاء 2: درس واختبار', tab2:'مكتبة التعليمات', tab3:'كيف نكتب تعليمات جيدة',
+  editB:'✎ تعديل', copy:'نسخ', copied:'✓ تم النسخ', edit:'يمكن تعديل التعليمات قبل النسخ', restore:'↺ إرجاع النص الأصلي', open:'افتحوا', done:'أنهيت',
+  partA:'نخطّط الدرس', partB:'نبني اختبارًا لنهاية الدرس', of:'من', reset:'إعادة', resetQ:'إعادة التقدّم في اللقاء من البداية؟',
+  all:'الكل', any:'أي أداة',
+  cats:{plan:'تخطيط',adapt:'ملاءمة',assess:'تقييم',comm:'تواصل',lang:'لغة',learn:'تعلّم ذاتي'},
+  steps:[
+   ['الدخول إلى Gemini',['افتحوا Gemini في لسان جديد.','ادخلوا بحساب جوجل الخاص بالمدرسة.','ترون حقل الكتابة في الأسفل؟ أنتم في الداخل.'],null,'لا تستطيعون الدخول؟ لا تتوقفوا. اعملوا مع الزميل وادخلوا لاحقًا.'],
+   ['نطلب خطة درس',['انسخوا التعليمات.','الصقوها في Gemini وأرسلوا.'],['plan'],null],
+   ['نحسّن، ونفحص بأنفسنا',['اختاروا تحسينًا واحدًا، انسخوه وأرسلوه في نفس المحادثة.'],['fix1','fix2','fix3','fix4'],null,['المضمون صحيح حسب الكتاب والمنهج','مجموع الأوقات 45 دقيقة','المستوى واللغة يناسبان صفّي','يوجد نشاط يعمل فيه الطلاب بأنفسهم']],
+   ['نطلب ورقة تلخيص للطالب',['انسخوا وأرسلوا في نفس المحادثة.','اقرأوا الورقة وصحّحوا الأخطاء.','انسخوا الورقة كلها.'],['summary'],'من هذه الورقة سيُبنى الاختبار. أي خطأ فيها يصبح خطأً في سؤال.'],
+   ['نفتح اختبارًا جديدًا',['افتحوا TestWiseAI في لسان جديد وادخلوا.','أنشئوا اختبارًا جديدًا من نص حر.'],null,null],
+   ['نلصق المادة والتعليمات',['الصقوا ورقة التلخيص من Gemini.','انسخوا التعليمات من هنا والصقوها أيضًا.','أنشئوا الاختبار وانتظروا الأسئلة.'],['quiz'],'الخطأ الشائع: لصق التعليمات فقط ونسيان ورقة التلخيص.'],
+   ['نفحص كل سؤال',[],null,'إلزامي: تصحيح أو حذف سؤال واحد على الأقل.',['توجد إجابة صحيحة واحدة بالضبط','السؤال والإجابات تتحدث عن الشيء نفسه','العنوان لا يكشف الإجابة','الإجابات الخاطئة معقولة','يناسب صفّي: اللغة، المستوى، وما درّسته فعلًا']],
+   ['ننشر ونشارك',['انشروا الاختبار كتدريب، بدون علامة.','أرسلوا الرابط للزميل وحلّوا اختباره.','أخطئوا عمدًا في سؤال واحد واقرأوا الشرح.'],null,null]],
+  task:['المهمة حتى اللقاء القادم','علّموا الدرس الذي خطّطتموه.','في آخر 5 دقائق: الطلاب يحلّون الاختبار.','أحضروا معطًى واحدًا: السؤال الذي أخطأ فيه أكثر الطلاب.'],
+  rules:[['لمن؟','المادة، الصف، المستوى واللغة.'],['ماذا؟','الموضوع، المدة، وما يجب أن يتضمنه.'],['كيف؟','بأي شكل نريد النتيجة: جدول، قائمة، طول.']],
+  rulesH:'في كل تعليمات: لمن، ماذا، كيف', badH:'تعليمات غير جيدة', goodH:'تعليمات جيدة',
+  bad:'حضّر لي درسًا عن الكسور.', badWhy:'الأداة لا تعرف لأي صف، كم من الوقت، بأي لغة، وماذا يجب أن يكون في الدرس. ستخمّن.',
+  good:'أنت معلّم رياضيات في المدرسة الإعدادية. أدرّس الصف السابع باللغة العربية. ابنِ درسًا مدته 45 دقيقة عن جمع الكسور: أهداف، افتتاحية من حياة الطلاب، نشاط في أزواج، وثلاثة أسئلة لفحص الفهم. اعرضه كجدول: المرحلة، الوقت، ماذا يفعل المعلّم، ماذا يفعل الطلاب.',
+  tips:['حسّنوا في نفس المحادثة بجملة واحدة: "اختصر"، "بسّط للصف السابع"، "أضف مثالًا من الحياة".','اطلبوا: "قبل أن تبدأ، اسألني ما الذي ينقصك".','في TestWiseAI: أعطوا مادة كاملة (ليس اسم الموضوع فقط) وتعليمات واضحة.','لا تُدخلوا أسماء أو علامات أو تفاصيل شخصية عن الطلاب.','الأداة تقترح. المعلّم يفحص ويقرّر.'],
+  tipsH:'5 قواعد قصيرة', foot:'الذكاء الاصطناعي يقترح. المعلّم يقرّر.' },
+
+en: { dir:'ltr', name:'English',
+  title:"The Teacher's AI Kit", sub:'Ready-to-copy prompts for Gemini, TestWiseAI and any AI tool',
+  profH:'My details', profP:'Fill these in once. They go into every prompt automatically and are saved in your browser for next time.',
+  fS:'My subject', fSph:'e.g. Science', fG:'Grade', fL:'Language my students learn in', fT:'Topic', fTph:'e.g. The water cycle', choose:'Choose',
+  grades:{7:'Grade 7',8:'Grade 8',9:'Grade 9'}, langs:{ar:'Arabic',he:'Hebrew',en:'English'},
+  ph:{S:'[subject]',G:'[grade]',L:'[language]',T:'[topic]'},
+  left:(n)=>`${n} fields left`, ready:'✓ Great. All prompts are ready',
+  tab1:'Session 2: Lesson & quiz', tab2:'Prompt library', tab3:'How to write a good prompt',
+  editB:'✎ Edit', copy:'Copy', copied:'✓ Copied', edit:'You can edit the prompt before copying', restore:'↺ Restore original', open:'Open', done:'Done',
+  partA:'Plan the lesson', partB:'Build an end-of-lesson quiz', of:'of', reset:'Reset', resetQ:'Reset your progress in this session?',
+  all:'All', any:'Any tool',
+  cats:{plan:'Planning',adapt:'Differentiation',assess:'Assessment',comm:'Communication',lang:'Language',learn:'Self-study'},
+  steps:[
+   ['Sign in to Gemini',['Open Gemini in a new tab.','Sign in with your school Google account.','See a text box at the bottom? You are in.'],null,"Can't sign in? Don't wait. Work with your neighbour and sign in later."],
+   ['Ask for a lesson plan',['Copy the prompt.','Paste it into Gemini and send.'],['plan'],null],
+   ['Improve it, then check it yourself',['Pick one improvement, copy it and send it in the same chat.'],['fix1','fix2','fix3','fix4'],null,['The content is correct, per the textbook and curriculum','The timings add up to 45 minutes','Level and language suit my class','There is an activity where students do the work']],
+   ['Ask for a student summary sheet',['Copy and send in the same chat.','Read the sheet and fix any mistakes.','Copy the whole sheet.'],['summary'],'The quiz will be built from this sheet. A mistake here becomes a mistake in a question.'],
+   ['Open a new quiz',['Open TestWiseAI in a new tab and sign in.','Create a new quiz from free text.'],null,null],
+   ['Paste the material and the instructions',['Paste the summary sheet from Gemini.','Copy the instructions below and paste them too.','Create, and wait for the questions.'],['quiz'],'Common mistake: pasting only the instructions and forgetting the summary sheet.'],
+   ['Check every question',[],null,'Required: fix or delete at least one question.',['Exactly one correct answer','The question and answers are about the same thing','The title does not give the answer away','The wrong answers are plausible','It suits my class: language, level, and what I actually taught']],
+   ['Publish and share',['Publish as practice, no grade.',"Send the link to your neighbour and solve their quiz.",'Answer one question wrong on purpose and read the explanation.'],null,null]],
+  task:['Task before the next session','Teach the lesson you planned.','In the last 5 minutes, students take the quiz.','Bring one data point: the question most students got wrong.'],
+  rules:[['Who?','Subject, grade, level and language.'],['What?','The topic, how long, and what must be included.'],['How?','The format you want back: a table, a list, a length.']],
+  rulesH:'Every prompt: who, what, how', badH:'A weak prompt', goodH:'A good prompt',
+  bad:'Make me a lesson on fractions.', badWhy:"The tool doesn't know the grade, the length, the language or what the lesson needs. It will guess.",
+  good:'You are a middle-school maths teacher. I teach Grade 7, in Arabic. Build a 45-minute lesson on adding fractions: goals, an opening from students\' lives, a pair activity and three check-for-understanding questions. Show it as a table: stage, time, what the teacher does, what students do.',
+  tips:['Improve in the same chat with one sentence: "shorter", "simpler for Grade 7", "add a real-life example".','Ask: "Before you start, ask me what you are missing".','In TestWiseAI: give the full material (not just the topic name) and clear instructions.',"Never enter students' names, grades or personal details.",'The tool suggests. The teacher checks and decides.'],
+  tipsH:'5 short rules', foot:'AI suggests. The teacher decides.' }
+};
+
+/* prompts: {S} subject · {G} grade · {L} language · {T} topic */
+const PROMPTS = {
+he: {
+ plan:"אתה מורה מנוסה ל{S} בחטיבת ביניים.\nאני מלמד {G}, ושפת ההוראה היא {L}.\nבנה מערך שיעור של 45 דקות בנושא: {T}.\n\nהמערך יכלול:\n1. שתיים או שלוש מטרות: מה התלמיד ידע לעשות בסוף השיעור.\n2. פתיחה של 5 דקות שמעוררת סקרנות ומתחברת לחיי התלמידים.\n3. הסבר קצר של המורה, עד 10 דקות.\n4. פעילות בזוגות שבה התלמידים עובדים בעצמם.\n5. שלוש שאלות לבדיקת הבנה במהלך השיעור.\n6. סיכום של 5 דקות.\n\nהצג את המערך כטבלה: שלב | זמן בדקות | מה עושה המורה | מה עושים התלמידים.\nכתוב ב{L}, בשפה פשוטה שמתאימה לגיל התלמידים.",
+ fix1:"הפתיחה לא מספיק מעניינת. הצע שלוש פתיחות אחרות, קצרות, שמתחברות לחיי היומיום של התלמידים.",
+ fix2:"התאם את הפעילות בזוגות לשלוש רמות: תלמידים מתקשים (עם רמז), רמה רגילה, ומתקדמים (עם אתגר).",
+ fix3:"אילו טעויות נפוצות יש לתלמידים בנושא הזה? הוסף למערך שורה: איך המורה מזהה כל טעות ומה הוא אומר.",
+ fix4:"קצר את ההסבר של המורה ל-7 דקות, ותן את הזמן שנשאר לפעילות בזוגות. הצג שוב את הטבלה המלאה.",
+ summary:"כתוב עכשיו \"דף סיכום לתלמיד\" לשיעור הזה.\nעמוד אחד ב{L}, בשפה פשוטה ל{G}.\nהדף יכלול: את המושגים החשובים עם הסבר של משפט אחד לכל מושג, שתי דוגמאות פתורות צעד אחר צעד, וטעות נפוצה אחת ואיך נמנעים ממנה.\nכתוב טקסט רציף עם כותרות, בלי טבלאות ובלי סימנים מיוחדים.",
+ quiz:"צור בוחן \"בדיקת הבנה\" של 5 שאלות אמריקאיות לסוף שיעור ב{G}, רק על החומר המצורף.\nרמה: 2 שאלות קלות, 2 בינוניות ואחת מאתגרת.\nלכל שאלה 4 תשובות קצרות, ורק אחת נכונה. התשובות השגויות מבוססות על טעויות נפוצות של תלמידים.\nמקם את התשובה הנכונה במקום אחר בכל שאלה.\nכותרת השאלה לא רומזת לתשובה.\nלכל שאלה הוסף הסבר של משפט אחד: למה התשובה נכונה.\nכתוב ב{L}, בשפה פשוטה שמתאימה לגיל התלמידים.",
+ opening:"אתה מורה ל{S} בחטיבת ביניים. תן לי 3 רעיונות לפתיחה של 5 דקות לשיעור בנושא {T} ל{G}, שמעוררים סקרנות ומתחברים לחיי התלמידים. לכל רעיון: מה עושים, ומה שואלים את הכיתה. כתוב ב{L}.",
+ worksheet:"אתה מורה מנוסה ל{S}. הכן דף עבודה בנושא {T} ל{G} בשלוש רמות: רמה א' עם רמז ודוגמה פתורה, רמה ב' רגילה, ורמה ג' עם בעיה מחיי היומיום. 4 תרגילים בכל רמה. בסוף: מפתח תשובות בטבלה. כתוב ב{L}, בשפה פשוטה.",
+ simplify:"פשט את הטקסט הבא לתלמידי {G}: משפטים קצרים, מילים פשוטות, בלי לאבד את הרעיון המרכזי. אחר כך הוסף טבלה של 6 מונחים חשובים מהטקסט: מונח | תרגום | הסבר במשפט אחד. כתוב ב{L}.\nהטקסט: [הדביקו כאן]",
+ explain:"תלמידי {G} לא הבינו את הנושא {T} בהסבר הרגיל. תן 3 הסברים שונים: עם דימוי מחיי היומיום, עם תרשים שמתואר במילים, ועם דוגמה מעשית. כתוב ב{L}, בשפה פשוטה.",
+ mcq:"על בסיס הטקסט המצורף, כתוב 6 שאלות אמריקאיות ל{G} בנושא {T}. לכל שאלה 4 תשובות, אחת נכונה בלבד, והתשובות השגויות מבוססות על טעויות נפוצות. סמן את התשובה הנכונה והסבר אותה במשפט אחד. כתוב ב{L}.\nהטקסט: [הדביקו כאן]",
+ check:"לפניך שאלות שכתבתי למבחן ב{S} ל{G}. בדוק כל שאלה: האם יש תשובה נכונה אחת בדיוק? האם הניסוח ברור? האם הרמה מתאימה? הצע תיקון לכל בעיה. ענה ב{L}.\nהשאלות: [הדביקו כאן]",
+ game:"בנה לי משחק אינטראקטיבי לתרגול הנושא {T} לתלמידי {G}. המשחק ב{L}, עם 10 שאלות אקראיות, ארבע תשובות לבחירה, ניקוד, משוב מיידי אחרי כל תשובה, ומסך סיום עם הציון וכפתור \"שחק שוב\". עיצוב צבעוני ושמח שמתאים גם לטלפון.",
+ parents:"כתוב הודעת וואטסאפ קצרה וחמה להורי {G} ב{L}: בשבוע הבא מתחילים יחידה בנושא {T}, ויהיה בוחן תרגול ללא ציון. בקש מההורים לעודד תרגול של 15 דקות ביום. עד 5 שורות, טון מכבד ומעודד, בלי שמות תלמידים.",
+ feedback:"כתוב 5 משפטי משוב לתלמיד ב{G} שהשתפר בנושא {T} אבל עדיין טועה ב[הטעות]. כל משפט: מה טוב, מה לשפר, וצעד אחד הבא. כתוב ב{L}. בלי שם התלמיד.",
+ vocab:"הכן רשימה של 12 מונחים חשובים ב{S} בנושא {T} ל{G}. טבלה: מונח בעברית | תרגום לערבית | הסבר פשוט | משפט לדוגמה.",
+ tutor:"אתה מורה פרטי סבלני ל{S}, ואני תלמיד ב{G}. הנושא: {T}. אל תיתן לי את התשובות. שאל אותי שאלה אחת בכל פעם, מהקל אל הקשה. אם טעיתי, תן לי רמז ותן לי לנסות שוב. בסוף, סכם לי מה אני יודע ומה כדאי לתרגל. דבר איתי ב{L}."
+},
+ar: {
+ plan:"أنت معلّم ذو خبرة في مادة {S} في المدرسة الإعدادية.\nأدرّس {G}، ولغة التدريس هي {L}.\nابنِ خطة درس مدتها 45 دقيقة في موضوع: {T}.\n\nتشمل الخطة:\n1. هدفين أو ثلاثة: ماذا سيعرف الطالب أن يفعل في نهاية الدرس.\n2. افتتاحية مدتها 5 دقائق تثير الفضول وترتبط بحياة الطلاب.\n3. شرحًا قصيرًا من المعلّم، حتى 10 دقائق.\n4. نشاطًا في أزواج يعمل فيه الطلاب بأنفسهم.\n5. ثلاثة أسئلة لفحص الفهم خلال الدرس.\n6. تلخيصًا مدته 5 دقائق.\n\nاعرض الخطة كجدول: المرحلة | الوقت بالدقائق | ماذا يفعل المعلّم | ماذا يفعل الطلاب.\nاكتب باللغة {L}، بلغة بسيطة تناسب عمر الطلاب.",
+ fix1:"الافتتاحية ليست مشوّقة بما يكفي. اقترح ثلاث افتتاحيات أخرى قصيرة ترتبط بالحياة اليومية للطلاب.",
+ fix2:"لائم النشاط في أزواج لثلاثة مستويات: طلاب يواجهون صعوبة (مع تلميح)، مستوى عادي، ومتقدمون (مع تحدٍّ).",
+ fix3:"ما الأخطاء الشائعة عند الطلاب في هذا الموضوع؟ أضف إلى الخطة سطرًا: كيف يكتشف المعلّم كل خطأ وماذا يقول.",
+ fix4:"اختصر شرح المعلّم إلى 7 دقائق، وأعطِ الوقت المتبقي للنشاط في أزواج. اعرض الجدول الكامل من جديد.",
+ summary:"اكتب الآن \"ورقة تلخيص للطالب\" لهذا الدرس.\nصفحة واحدة باللغة {L}، بلغة بسيطة لطلاب {G}.\nتشمل الورقة: المفاهيم المهمة مع شرح بجملة واحدة لكل مفهوم، ومثالين محلولين خطوة بخطوة، وخطأً شائعًا واحدًا وكيف نتجنّبه.\nاكتب نصًا متصلًا مع عناوين، بدون جداول وبدون رموز خاصة.",
+ quiz:"أنشئ اختبار \"فحص فهم\" من 5 أسئلة اختيار من متعدد لنهاية درس في {G}، فقط عن المادة المرفقة.\nالمستوى: سؤالان سهلان، سؤالان متوسطان، وسؤال واحد صعب.\nلكل سؤال 4 إجابات قصيرة، واحدة فقط صحيحة. الإجابات الخاطئة مبنية على أخطاء شائعة عند الطلاب.\nضع الإجابة الصحيحة في مكان مختلف في كل سؤال.\nعنوان السؤال لا يلمّح إلى الإجابة.\nأضف لكل سؤال شرحًا بجملة واحدة: لماذا الإجابة صحيحة.\nاكتب باللغة {L}، بلغة بسيطة تناسب عمر الطلاب.",
+ opening:"أنت معلّم {S} في المدرسة الإعدادية. أعطني 3 أفكار لافتتاحية مدتها 5 دقائق لدرس في موضوع {T} لطلاب {G}، تثير الفضول وترتبط بحياة الطلاب. لكل فكرة: ماذا نفعل، وماذا نسأل الصف. اكتب باللغة {L}.",
+ worksheet:"أنت معلّم {S} ذو خبرة. حضّر ورقة عمل في موضوع {T} لطلاب {G} بثلاثة مستويات: المستوى أ مع تلميح ومثال محلول، المستوى ب عادي، والمستوى ج مع مسألة من الحياة اليومية. 4 تمارين في كل مستوى. في النهاية: مفتاح الحلول في جدول. اكتب باللغة {L}، بلغة بسيطة.",
+ simplify:"بسّط النص التالي لطلاب {G}: جمل قصيرة، كلمات بسيطة، دون أن تضيع الفكرة الأساسية. بعد ذلك أضف جدولًا فيه 6 مصطلحات مهمة من النص: المصطلح | الترجمة | شرح بجملة واحدة. اكتب باللغة {L}.\nالنص: [الصقوه هنا]",
+ explain:"طلاب {G} لم يفهموا موضوع {T} بالشرح العادي. أعطِ 3 شروحات مختلفة: بتشبيه من الحياة اليومية، برسم توضيحي موصوف بالكلمات، وبمثال عملي. اكتب باللغة {L}، بلغة بسيطة.",
+ mcq:"بناءً على النص المرفق، اكتب 6 أسئلة اختيار من متعدد لطلاب {G} في موضوع {T}. لكل سؤال 4 إجابات، واحدة فقط صحيحة، والإجابات الخاطئة مبنية على أخطاء شائعة. أشر إلى الإجابة الصحيحة واشرحها بجملة واحدة. اكتب باللغة {L}.\nالنص: [الصقوه هنا]",
+ check:"أمامك أسئلة كتبتها لامتحان في {S} لطلاب {G}. افحص كل سؤال: هل توجد إجابة صحيحة واحدة بالضبط؟ هل الصياغة واضحة؟ هل المستوى مناسب؟ اقترح تصحيحًا لكل مشكلة. أجب باللغة {L}.\nالأسئلة: [الصقوها هنا]",
+ game:"ابنِ لي لعبة تفاعلية للتدرّب على موضوع {T} لطلاب {G}. اللعبة باللغة {L}، فيها 10 أسئلة عشوائية، أربع إجابات للاختيار، نقاط، تغذية راجعة فورية بعد كل إجابة، وشاشة نهاية فيها العلامة وزر \"العب مرة أخرى\". تصميم ملوّن ومرح يناسب الهاتف أيضًا.",
+ parents:"اكتب رسالة واتساب قصيرة ودافئة لأهالي طلاب {G} باللغة {L}: في الأسبوع القادم نبدأ وحدة في موضوع {T}، وسيكون هناك اختبار تدريبي بدون علامة. اطلب من الأهل تشجيع التدرّب 15 دقيقة يوميًا. حتى 5 أسطر، بنبرة محترمة ومشجّعة، بدون أسماء طلاب.",
+ feedback:"اكتب 5 جمل تغذية راجعة لطالب في {G} تحسّن في موضوع {T} لكنه ما زال يخطئ في [الخطأ]. كل جملة: ما الجيد، ما الذي يجب تحسينه، وخطوة واحدة تالية. اكتب باللغة {L}. بدون اسم الطالب.",
+ vocab:"حضّر قائمة من 12 مصطلحًا مهمًا في {S} في موضوع {T} لطلاب {G}. جدول: المصطلح بالعبرية | الترجمة إلى العربية | شرح بسيط | جملة كمثال.",
+ tutor:"أنت معلّم خصوصي صبور في مادة {S}، وأنا طالب في {G}. الموضوع: {T}. لا تعطني الإجابات. اسألني سؤالًا واحدًا في كل مرة، من السهل إلى الصعب. إذا أخطأت، أعطني تلميحًا ودعني أحاول من جديد. في النهاية، لخّص لي ماذا أعرف وماذا يجب أن أتدرّب عليه. تحدّث معي باللغة {L}."
+},
+en: {
+ plan:"You are an experienced middle-school {S} teacher.\nI teach {G}, and the language of instruction is {L}.\nBuild a 45-minute lesson plan on: {T}.\n\nThe plan should include:\n1. Two or three goals: what students will be able to do by the end.\n2. A 5-minute opening that sparks curiosity and connects to students' lives.\n3. A short teacher explanation, up to 10 minutes.\n4. A pair activity where students do the work themselves.\n5. Three check-for-understanding questions during the lesson.\n6. A 5-minute wrap-up.\n\nShow the plan as a table: stage | time in minutes | what the teacher does | what students do.\nWrite in {L}, in simple language suited to the students' age.",
+ fix1:"The opening isn't engaging enough. Suggest three other short openings that connect to students' everyday lives.",
+ fix2:"Adapt the pair activity to three levels: struggling students (with a hint), regular level, and advanced (with a challenge).",
+ fix3:"What mistakes do students commonly make on this topic? Add a row to the plan: how the teacher spots each mistake and what to say.",
+ fix4:"Cut the teacher explanation to 7 minutes and give the remaining time to the pair activity. Show the full table again.",
+ summary:"Now write a \"student summary sheet\" for this lesson.\nOne page in {L}, in simple language for {G}.\nInclude: the key concepts with a one-sentence explanation each, two step-by-step worked examples, and one common mistake and how to avoid it.\nWrite continuous text with headings, no tables and no special symbols.",
+ quiz:"Create a 5-question multiple-choice \"check for understanding\" quiz for the end of a {G} lesson, only on the attached material.\nLevel: 2 easy, 2 medium and 1 challenging question.\nEach question has 4 short answers, only one correct. The wrong answers are based on common student mistakes.\nPut the correct answer in a different position in each question.\nThe question title must not hint at the answer.\nAdd a one-sentence explanation to each question: why the answer is correct.\nWrite in {L}, in simple language suited to the students' age.",
+ opening:"You are a middle-school {S} teacher. Give me 3 ideas for a 5-minute opening to a lesson on {T} for {G} that spark curiosity and connect to students' lives. For each idea: what we do, and what we ask the class. Write in {L}.",
+ worksheet:"You are an experienced {S} teacher. Prepare a worksheet on {T} for {G} at three levels: level A with a hint and a worked example, level B regular, and level C with an everyday real-life problem. 4 exercises per level. At the end: an answer key in a table. Write in {L}, in simple language.",
+ simplify:"Simplify the following text for {G} students: short sentences, simple words, without losing the main idea. Then add a table of 6 key terms from the text: term | translation | one-sentence explanation. Write in {L}.\nThe text: [paste here]",
+ explain:"{G} students didn't understand {T} from the usual explanation. Give 3 different explanations: with an everyday analogy, with a diagram described in words, and with a hands-on example. Write in {L}, in simple language.",
+ mcq:"Based on the attached text, write 6 multiple-choice questions for {G} on {T}. Each question has 4 answers, only one correct, and the wrong answers are based on common mistakes. Mark the correct answer and explain it in one sentence. Write in {L}.\nThe text: [paste here]",
+ check:"Here are questions I wrote for a {S} test for {G}. Check each one: is there exactly one correct answer? Is the wording clear? Is the level right? Suggest a fix for every problem. Answer in {L}.\nThe questions: [paste here]",
+ game:"Build me an interactive game to practise {T} for {G} students. The game is in {L}, with 10 random questions, four answer choices, points, instant feedback after each answer, and an end screen with the score and a \"Play again\" button. A colourful, cheerful design that also works on phones.",
+ parents:"Write a short, warm WhatsApp message to the parents of {G} in {L}: next week we start a unit on {T}, and there will be a practice quiz with no grade. Ask parents to encourage 15 minutes of practice a day. Up to 5 lines, respectful and encouraging, no student names.",
+ feedback:"Write 5 feedback sentences for a {G} student who has improved on {T} but still makes [the mistake]. Each sentence: what's good, what to improve, and one next step. Write in {L}. No student name.",
+ vocab:"Prepare a list of 12 key {S} terms on {T} for {G}. Table: term in Hebrew | Arabic translation | simple explanation | example sentence.",
+ tutor:"You are a patient {S} tutor, and I am a {G} student. The topic: {T}. Don't give me the answers. Ask me one question at a time, from easy to hard. If I'm wrong, give me a hint and let me try again. At the end, summarise what I know and what I should practise. Talk to me in {L}."
+}};
+
+const TITLES = {
+ he:{plan:'מערך שיעור',fix1:'פתיחה מעניינת יותר',fix2:'פעילות בשלוש רמות',fix3:'טעויות נפוצות של תלמידים',fix4:'פחות הסבר, יותר פעילות',summary:'דף סיכום לתלמיד',quiz:'ההוראות לבוחן',opening:'רעיונות לפתיחת שיעור',worksheet:'דף עבודה בשלוש רמות',simplify:'פישוט טקסט + מילון מונחים',explain:'הסבר בשלוש דרכים',mcq:'שאלות אמריקאיות מטקסט',check:'בודק השאלות שלי',game:'משחק לימודי אינטראקטיבי',parents:'הודעה להורים',feedback:'משוב מעודד לתלמיד',vocab:'מילון מונחים עברית-ערבית',tutor:'"מורה פרטי" לתלמידים'},
+ ar:{plan:'خطة درس',fix1:'افتتاحية أكثر تشويقًا',fix2:'نشاط بثلاثة مستويات',fix3:'أخطاء شائعة عند الطلاب',fix4:'شرح أقل، نشاط أكثر',summary:'ورقة تلخيص للطالب',quiz:'تعليمات الاختبار',opening:'أفكار لافتتاح الدرس',worksheet:'ورقة عمل بثلاثة مستويات',simplify:'تبسيط نص + قاموس مصطلحات',explain:'شرح بثلاث طرق',mcq:'أسئلة اختيار من متعدد من نص',check:'فاحص أسئلتي',game:'لعبة تعليمية تفاعلية',parents:'رسالة للأهل',feedback:'تغذية راجعة مشجّعة للطالب',vocab:'قاموس مصطلحات عبري-عربي',tutor:'"معلّم خصوصي" للطلاب'},
+ en:{plan:'Lesson plan',fix1:'A more engaging opening',fix2:'Activity at three levels',fix3:'Common student mistakes',fix4:'Less talk, more activity',summary:'Student summary sheet',quiz:'Quiz instructions',opening:'Lesson-opening ideas',worksheet:'Three-level worksheet',simplify:'Simplify a text + glossary',explain:'Explain it three ways',mcq:'Multiple-choice questions from a text',check:'Check my questions',game:'Interactive learning game',parents:'Message to parents',feedback:'Encouraging student feedback',vocab:'Hebrew–Arabic glossary',tutor:'A "personal tutor" for students'}
+};
+const LIB = [['opening','plan','any'],['plan','plan','gemini'],['worksheet','adapt','any'],['simplify','adapt','any'],['explain','adapt','any'],['mcq','assess','any'],['quiz','assess','testwise'],['check','assess','any'],['game','learn','claude'],['tutor','learn','any'],['parents','comm','any'],['feedback','comm','any'],['vocab','lang','any']];
+const TOOLS = {gemini:['Gemini','https://gemini.google.com'],testwise:['TestWiseAI','https://testwiseai.com'],claude:['Claude','https://claude.ai'],chatgpt:['ChatGPT','https://chatgpt.com']};
+
+(() => {
+const $ = (s) => document.querySelector(s);
+const ST = 'tkit-v1';
+let S = { lang: null, S: '', G: '', L: '', T: '', done: [], edits: {}, tab: 's2', cat: 'all' };
+try { Object.assign(S, JSON.parse(localStorage.getItem(ST) || '{}')); } catch (e) {}
+if (!I18N[S.lang]) { const n = (navigator.language || '').slice(0, 2); S.lang = n === 'ar' ? 'ar' : n === 'en' ? 'en' : 'he'; }
+const save = () => { try { localStorage.setItem(ST, JSON.stringify(S)); } catch (e) {} };
+const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const U = () => I18N[S.lang];
+const vals = () => { const u = U(); return { S: S.S.trim(), G: S.G ? u.grades[S.G] : '', L: S.L ? u.langs[S.L] : '', T: S.T.trim() }; };
+function fill(key, html) {
+  const u = U(), v = vals(); let t = PROMPTS[S.lang][key];
+  if (!html) return t.replace(/\{([SGLT])\}/g, (_, k) => v[k] || u.ph[k]);
+  return esc(t).replace(/\{([SGLT])\}/g, (_, k) => v[k] ? `<span class="v">${esc(v[k])}</span>` : `<span class="f">${u.ph[k]}</span>`).replace(/\[([^\]{}]+)\]/g, (m) => `<span class="f">${m}</span>`);
+}
+const ekey = (k) => S.lang + ':' + k;
+function promptBox(key, color, title) {
+  const u = U(), ed = S.edits[ekey(key)];
+  return `<div class="pr" data-k="${key}" style="--c:${color}"><div class="prh"><b>${esc((title || TITLES[S.lang][key]).trim())}</b><button class="btn gh" data-a="edit">${u.editB}</button><button class="btn" data-a="copy">${u.copy}</button></div>`
+    + (ed != null ? `<textarea>${esc(ed)}</textarea><div class="edited">${u.edit} · <button class="btn gh" data-a="restore" style="padding:2px 10px;font-size:13px">${u.restore}</button></div>` : `<div class="txt">${fill(key, true)}</div>`) + `</div>`;
+}
+const openBtn = (t) => `<a class="open" href="${TOOLS[t][1]}" target="_blank" rel="noopener">${U().open} <span class="ltr">${TOOLS[t][0]}</span> ↗</a>`;
+
+function renderS2() {
+  const u = U(); let h = '';
+  u.steps.forEach((st, i) => {
+    const [title, items, prompts, note, checks] = st, c = i < 4 ? 'var(--gem)' : 'var(--tw)';
+    if (i === 0) h += `<div class="part" style="--c:var(--gem)"><b class="ltr">Gemini</b><span>${u.partA}</span></div>`;
+    if (i === 4) h += `<div class="part" style="--c:var(--tw)"><b class="ltr">TestWiseAI</b><span>${u.partB}</span></div>`;
+    const done = S.done.includes(i);
+    h += `<section class="card step${done ? ' done' : ''}" style="--c:${c}" data-i="${i}"><div class="sh"><span class="num">${i + 1}</span><h3>${esc(title)}</h3><label class="dn"><input type="checkbox"${done ? ' checked' : ''}>${u.done}</label></div>`;
+    if (items.length) h += `<ol class="do">${items.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>`;
+    if (i === 0) h += openBtn('gemini');
+    if (i === 4) h += openBtn('testwise');
+    if (prompts) h += prompts.map((k) => promptBox(k, c)).join('');
+    if (checks) h += `<ul class="ck">${checks.map((x) => `<li><input type="checkbox"><span>${esc(x)}</span></li>`).join('')}</ul>`;
+    if (note) h += `<div class="note${i === 3 || i === 6 ? ' b' : ''}"><span>${i === 3 ? '⚠️' : i === 6 ? '✏️' : '💡'}</span><span>${esc(note)}</span></div>`;
+    h += `</section>`;
+  });
+  h += `<section class="card hw"><h3>${esc(u.task[0])}</h3><ol class="do">${u.task.slice(1).map((x) => `<li>${esc(x)}</li>`).join('')}</ol></section>`;
+  $('#s2').innerHTML = h; prog();
+}
+const TC = { gemini: 'var(--gem)', testwise: 'var(--tw)', claude: 'var(--cl)', any: 'var(--any)' };
+function renderLib() {
+  const u = U(); let h = `<div class="chips">` + ['all', ...Object.keys(u.cats)].map((c) => `<button data-cat="${c}" class="${S.cat === c ? 'on' : ''}">${c === 'all' ? u.all : u.cats[c]}</button>`).join('') + `</div>`;
+  LIB.filter(([, cat]) => S.cat === 'all' || cat === S.cat).forEach(([k, cat, tool]) => {
+    const c = TC[tool], tname = tool === 'any' ? u.any : TOOLS[tool][0];
+    h += `<section class="card lib" style="--c:${c}"><div class="sh"><h3>${esc(TITLES[S.lang][k])}</h3><span class="tag">${esc(u.cats[cat])} · ${esc(tname)}</span></div>${promptBox(k, c, ' ')}<div>${tool === 'any' ? ['chatgpt', 'gemini', 'claude'].map(openBtn).join('') : openBtn(tool)}</div></section>`;
+  });
+  $('#lib').innerHTML = h;
+}
+function renderHow() {
+  const u = U();
+  $('#how').innerHTML = `<section class="card"><h3 style="margin:0 0 10px">${esc(u.rulesH)}</h3><div class="rules">${u.rules.map(([a, b]) => `<div class="rule"><b>${esc(a)}</b>${esc(b)}</div>`).join('')}</div>
+    <div class="cmp x"><h4>✗ ${esc(u.badH)}</h4><p>${esc(u.bad)}</p><small>${esc(u.badWhy)}</small></div>
+    <div class="cmp v"><h4>✓ ${esc(u.goodH)}</h4><p>${esc(u.good)}</p></div></section>
+    <section class="card"><h3 style="margin:0">${esc(u.tipsH)}</h3><ol class="tips">${u.tips.map((x) => `<li>${esc(x)}</li>`).join('')}</ol></section>`;
+}
+function prog() { const n = S.done.length; $('#prog').textContent = `${n} ${U().of} 8`; $('#progFill').style.width = (n / 8 * 100) + '%'; }
+function fields() {
+  const u = U(), g = $('#fG'), l = $('#fL');
+  g.innerHTML = `<option value="">${u.choose}</option>` + [7, 8, 9].map((k) => `<option value="${k}">${u.grades[k]}</option>`).join('');
+  l.innerHTML = `<option value="">${u.choose}</option>` + ['ar', 'he', 'en'].map((k) => `<option value="${k}">${u.langs[k]}</option>`).join('');
+  $('#fS').value = S.S; $('#fT').value = S.T; g.value = S.G; l.value = S.L;
+  $('#fS').placeholder = u.fSph; $('#fT').placeholder = u.fTph;
+}
+function readyLine() { const n = ['S', 'G', 'L', 'T'].filter((k) => !String(S[k]).trim()).length, r = $('#ready'); r.textContent = n ? U().left(n) : U().ready; r.className = 'ready ' + (n ? 'no' : 'ok'); }
+function refreshTexts() { document.querySelectorAll('.pr').forEach((el) => { const t = el.querySelector('.txt'); if (t) t.innerHTML = fill(el.dataset.k, true); }); readyLine(); }
+function applyLang() {
+  const u = U(); document.documentElement.lang = S.lang; document.documentElement.dir = u.dir; document.title = u.title;
+  document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = u[el.dataset.t]; });
+  document.querySelectorAll('#langs button').forEach((b) => b.classList.toggle('on', b.dataset.l === S.lang));
+  fields(); renderS2(); renderLib(); renderHow(); readyLine(); showTab(S.tab);
+}
+function showTab(p) { S.tab = p; document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('on', b.dataset.p === p)); document.querySelectorAll('.pane').forEach((x) => x.classList.toggle('on', x.id === p)); $('#bar').classList.toggle('on', p === 's2'); save(); }
+
+document.querySelectorAll('#langs button').forEach((b) => b.addEventListener('click', () => { S.lang = b.dataset.l; save(); applyLang(); }));
+document.querySelectorAll('#tabs button').forEach((b) => b.addEventListener('click', () => showTab(b.dataset.p)));
+[['fS', 'S', 'input'], ['fT', 'T', 'input'], ['fG', 'G', 'change'], ['fL', 'L', 'change']].forEach(([id, k, ev]) => $('#' + id).addEventListener(ev, (e) => { S[k] = e.target.value; save(); refreshTexts(); }));
+$('#thm').addEventListener('click', () => { const r = document.documentElement, cur = r.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); r.dataset.theme = cur === 'dark' ? 'light' : 'dark'; });
+document.addEventListener('click', (e) => {
+  const cat = e.target.closest('[data-cat]'); if (cat) { S.cat = cat.dataset.cat; save(); renderLib(); return; }
+  const b = e.target.closest('.pr [data-a]'); if (!b) return;
+  const box = b.closest('.pr'), k = box.dataset.k, a = b.dataset.a;
+  if (a === 'copy') {
+    const ta = box.querySelector('textarea'), t = ta ? ta.value : fill(k, false);
+    const done = () => { b.textContent = U().copied; b.classList.add('ok'); setTimeout(() => { b.textContent = U().copy; b.classList.remove('ok'); }, 1600); };
+    const fb = () => { const x = document.createElement('textarea'); x.value = t; x.style.position = 'fixed'; x.style.opacity = '0'; document.body.appendChild(x); x.select(); try { document.execCommand('copy'); } catch (er) {} x.remove(); done(); };
+    try { navigator.clipboard.writeText(t).then(done, fb); } catch (er) { fb(); }
+  } else if (a === 'edit') {
+    if (S.edits[ekey(k)] == null) { S.edits[ekey(k)] = fill(k, false); save(); }
+    rerenderBox(box);
+    const ta = document.querySelector(`.pr[data-k="${k}"] textarea`); if (ta) ta.focus();
+  } else if (a === 'restore') { delete S.edits[ekey(k)]; save(); rerenderBox(box); }
+});
+function rerenderBox(box) { const k = box.dataset.k, c = box.style.getPropertyValue('--c'), title = box.querySelector('.prh b').textContent; const tmp = document.createElement('div'); tmp.innerHTML = promptBox(k, c, title); box.replaceWith(tmp.firstChild); }
+document.addEventListener('input', (e) => { const ta = e.target.closest('.pr textarea'); if (!ta) return; S.edits[ekey(ta.closest('.pr').dataset.k)] = ta.value; save(); });
+document.addEventListener('change', (e) => {
+  const c = e.target.closest('.step .dn input'); if (!c) return;
+  const st = c.closest('.step'), i = +st.dataset.i;
+  S.done = S.done.filter((x) => x !== i); if (c.checked) S.done.push(i);
+  st.classList.toggle('done', c.checked); prog(); save();
+  if (c.checked) { const n = document.querySelector(`.step[data-i="${i + 1}"]`); if (n) n.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+});
+$('#rst').addEventListener('click', () => { if (!confirm(U().resetQ)) return; S.done = []; save(); renderS2(); scrollTo({ top: 0, behavior: 'smooth' }); });
+applyLang();
+})();
+
+</script>
+</body>
+</html>
